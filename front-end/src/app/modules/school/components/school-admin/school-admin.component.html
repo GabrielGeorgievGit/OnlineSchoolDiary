@@ -1,0 +1,19 @@
+<ng-container>
+  <mat-card *ngIf="hasSchool; else noSchool" class="school-card">
+    <div class="outerWrapper">
+      <mat-card-content class="content">
+        <mat-card-title class="title"
+          >School title if admin has registered a school.
+        </mat-card-title></mat-card-content
+      >
+    </div>
+  </mat-card>
+  <ng-template #noSchool>
+    <div class="no-school">
+      <h3>You don't have registered school.</h3>
+      <button color="primary" mat-raised-button routerLink="/school/register">
+        Register school
+      </button>
+    </div>
+  </ng-template>
+</ng-container>

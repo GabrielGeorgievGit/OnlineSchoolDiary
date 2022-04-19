@@ -1,0 +1,41 @@
+<mat-card class="form-container">
+  <form [formGroup]="loginForm" (submit)="onSubmit()">
+    <mat-card-title>Login</mat-card-title>
+
+    <mat-form-field class="formDetails" appearance="fill">
+      <mat-label>Username</mat-label>
+      <input formControlName="username" matInput />
+      <mat-error></mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="formDetails" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input
+        formControlName="password"
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        [attr.aria-label]="'Hide Password'"
+        [attr.aria-pressed]="hidePassword"
+        type="button"
+      >
+        <mat-icon matSuffix>{{
+          hidePassword ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+
+      <mat-error></mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button id="login-btn" [disabled]="loginForm.invalid">
+      Login
+    </button>
+    <br />
+    <mat-label>You don't have an account?</mat-label>
+    <button mat-raised-button id="register-btn">Register</button>
+  </form>
+</mat-card>

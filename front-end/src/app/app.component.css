@@ -1,0 +1,36 @@
+mat-toolbar {
+  background-color: seagreen;
+}
+
+.toolbar {
+  color: darkmagenta;
+  font-weight: bold;
+  position: absolute;
+  margin: 0, auto;
+  text-align: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.icon-wrapper {
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-icon {
+  margin-right: 5px;
+}
+
+.button-icon {
+  color: red;
+  font-weight: bold;
+
+  
+}
+.button-icon :hover { 
+  background-color: rgba(45, 6, 198, 0.926);
+}
