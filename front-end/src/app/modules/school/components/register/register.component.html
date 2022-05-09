@@ -1,0 +1,66 @@
+{{ school | json }}
+
+<mat-card class="form-container">
+  <form [formGroup]="formGroup" (submit)="handleSubmit()">
+    <mat-form-field class="schoolDetails" appearance="fill">
+      <mat-label>School Name</mat-label>
+      <input formControlName="name" matInput />
+      <mat-error *ngIf="formGroup.get('name')?.errors?.['required']"
+        >School name is required.</mat-error
+      >
+      <mat-error *ngIf="formGroup.get('name')?.errors?.['maxlength']"
+        >Min length is 3 symbols.</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field class="schoolDetails" appearance="fill">
+      <mat-label>Classes</mat-label>
+      <mat-select formControlName="classes" multiple>
+        <mat-option>Pre-school</mat-option>
+        <mat-option *ngFor="let class of classes; index as i">
+          {{ i + 1 }}
+        </mat-option>
+      </mat-select>
+
+      <mat-error *ngIf="formGroup.get('classes')?.errors?.['required']">
+        Choosing classes is a required field
+      </mat-error>
+    </mat-form-field>
+
+    <mat-label>Subjects: </mat-label>
+    <ng-container formArrayName="subjects">
+      <div
+        *ngFor="let subject of subjectsFormArray.controls; index as i"
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+      >
+        <mat-form-field class="schoolSubjects" [formGroupName]="i">
+          <mat-label>Subject name: </mat-label>
+          <input formControlName="name" matInput />
+          <mat-error *ngIf="subject.get('name')?.errors?.['required']"
+            >Subject name is required.</mat-error
+          >
+        </mat-form-field>
+
+        <button mat-icon-button type="button" (click)="removeSubject(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+
+    <div class="buttonsContainer">
+      <button mat-raised-button type="button" (click)="addSubject()">
+        Add subject
+      </button>
+      <button
+        mat-raised-button
+        id="submit"
+        type="submit"
+        [disabled]="formGroup.invalid"
+      >
+        <!-- routerLink="../../login" -->
+        Next
+      </button>
+    </div>
+  </form>
+</mat-card>

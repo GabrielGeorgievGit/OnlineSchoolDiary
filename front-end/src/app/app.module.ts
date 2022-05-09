@@ -12,8 +12,10 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 import { SchoolAdminComponent } from './modules/school/components/school-admin/school-admin.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './modules/school/components/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { RegisterComponent } from './register/register.component';
     ReactiveFormsModule,
     MatInputModule,
     BrowserAnimationsModule,
+    MatSelectModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
