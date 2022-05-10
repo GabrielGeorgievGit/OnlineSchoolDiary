@@ -82,4 +82,8 @@ export class EditComponent implements OnInit {
   removeSubject(index: number) {
     this.subjectsFormArray.removeAt(index);
   }
+
+  editTeachers() {}
+
+  editStudents() {}
 }

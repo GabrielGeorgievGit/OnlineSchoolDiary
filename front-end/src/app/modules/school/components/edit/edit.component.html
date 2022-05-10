@@ -7,7 +7,7 @@
       <mat-error *ngIf="formGroup.get('name')?.errors?.['required']"
         >School name is required.</mat-error
       >
-      <mat-error *ngIf="formGroup.get('name')?.errors?.['maxlength']"
+      <mat-error *ngIf="formGroup.get('name')?.errors?.['minlength']"
         >Min length is 3 symbols.</mat-error
       >
     </mat-form-field>
@@ -49,6 +49,13 @@
     <div class="buttonsContainer">
       <button mat-raised-button type="button" (click)="addSubject()">
         Add subject
+      </button>
+
+      <button mat-raised-button type="button" (click)="editTeachers()">
+        Edit Teachers
+      </button>
+      <button mat-raised-button type="button" (click)="editStudents()">
+        Edit Students
       </button>
       <button
         mat-raised-button

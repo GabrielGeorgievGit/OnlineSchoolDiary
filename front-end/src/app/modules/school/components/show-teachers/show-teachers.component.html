@@ -1,0 +1,24 @@
+<mat-card class="form-container">
+  <div class="header">
+    <h2>All Teachers</h2>
+    <button
+      mat-raised-button
+      (click)="newTeacher()"
+      style="background-color: limegreen"
+    >
+      Add New Teacher
+    </button>
+  </div>
+  <div class="buttonsContainer">
+    <button
+      mat-raised-button
+      *ngFor="let teacher of teachers; index as i"
+      (click)="editTeacher(i)"
+      style="background-color: steelblue"
+    >
+      {{
+        teacher.firstName + " " + teacher.secondName + " " + teacher.thirdName
+      }}
+    </button>
+  </div>
+</mat-card>

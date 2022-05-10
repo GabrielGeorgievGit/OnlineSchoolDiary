@@ -18,6 +18,10 @@ import { RegisterComponent } from './modules/school/components/register/register
 import { HttpClientModule } from '@angular/common/http';
 import { ViewComponent } from './modules/school/components/view/view.component';
 import { EditComponent } from './modules/school/components/edit/edit.component';
+import { TeachersComponent } from './modules/school/components/teachers/teachers.component';
+import { MatTableModule } from '@angular/material/table';
+import { ShowTeachersComponent } from './modules/school/components/show-teachers/show-teachers.component';
+import { EditTeacherComponent } from './modules/school/components/edit-teacher/edit-teacher.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,9 @@ import { EditComponent } from './modules/school/components/edit/edit.component';
     RegisterComponent,
     ViewComponent,
     EditComponent,
+    TeachersComponent,
+    ShowTeachersComponent,
+    EditTeacherComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +49,7 @@ import { EditComponent } from './modules/school/components/edit/edit.component';
     BrowserAnimationsModule,
     MatSelectModule,
     HttpClientModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

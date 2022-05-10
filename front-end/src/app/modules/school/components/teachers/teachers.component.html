@@ -1,0 +1,64 @@
+<mat-card class="form-container">
+  <form [formGroup]="formGroup" (submit)="handleSubmit()">
+    <mat-form-field class="schoolDetails" appearance="fill">
+      <mat-label>First name</mat-label>
+      <input formControlName="firstName" matInput />
+      <mat-error *ngIf="formGroup.get('firstName')?.errors?.['required']"
+        >Teacher name is required.</mat-error
+      >
+      <mat-error *ngIf="formGroup.get('firstName')?.errors?.['minlength']"
+        >Min length is 3 symbols.</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field class="schoolDetails" appearance="fill">
+      <mat-label>Second name</mat-label>
+      <input formControlName="secondName" matInput />
+      <mat-error *ngIf="formGroup.get('secondName')?.errors?.['required']"
+        >Teacher name is required.</mat-error
+      >
+      <mat-error *ngIf="formGroup.get('secondName')?.errors?.['minlength']"
+        >Min length is 3 symbols.</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field class="schoolDetails" appearance="fill">
+      <mat-label>Third name</mat-label>
+      <input formControlName="thirdName" matInput />
+      <mat-error *ngIf="formGroup.get('thirdName')?.errors?.['required']"
+        >Teacher name is required.</mat-error
+      >
+      <mat-error *ngIf="formGroup.get('thirdName')?.errors?.['minlength']"
+        >Min length is 3 symbols.</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field class="schoolDetails" appearance="fill">
+      <mat-label>Subject one</mat-label>
+      <input formControlName="subjectOne" matInput />
+      <mat-error *ngIf="formGroup.get('subjectOne')?.errors?.['required']"
+        >Subject one is required.</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field class="schoolDetails" appearance="fill">
+      <mat-label>Subject two</mat-label>
+      <input formControlName="subjectTwo" matInput />
+      <mat-error *ngIf="formGroup.get('subjectTwo')?.errors?.['required']"
+        >Subject two is required.</mat-error
+      >
+    </mat-form-field>
+
+    <div class="buttonsContainer">
+      <button
+        mat-raised-button
+        id="submit"
+        type="submit"
+        [disabled]="formGroup.invalid"
+        routerLink="../"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</mat-card>
