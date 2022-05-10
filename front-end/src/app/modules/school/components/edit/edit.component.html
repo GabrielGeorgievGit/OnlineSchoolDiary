@@ -1,5 +1,4 @@
-{{ school | json }}
-
+<!-- {{ school | json }} -->
 <mat-card class="form-container">
   <form [formGroup]="formGroup" (submit)="handleSubmit()">
     <mat-form-field class="schoolDetails" appearance="fill">
@@ -59,7 +58,7 @@
         [disabled]="formGroup.invalid"
         routerLink="../edit"
       >
-        Next
+        Change
       </button>
     </div>
   </form>

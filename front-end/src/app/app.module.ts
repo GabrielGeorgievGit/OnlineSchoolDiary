@@ -16,6 +16,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { SchoolAdminComponent } from './modules/school/components/school-admin/school-admin.component';
 import { RegisterComponent } from './modules/school/components/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewComponent } from './modules/school/components/view/view.component';
+import { EditComponent } from './modules/school/components/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     SchoolAdminComponent,
     RegisterComponent,
+    ViewComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,

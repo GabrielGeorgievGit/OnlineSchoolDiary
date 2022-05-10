@@ -14,4 +14,8 @@ export class SchoolService {
   registerSchoolProfile(school: School): Observable<School> {
     return this.http.post<School>(`http://localhost:4200/#/login`, school);
   }
+
+  getSchoolProfile(school: School): Observable<School> {
+    return this.http.get<School>(`http://localhost:4200/#/`);
+  }
 }
