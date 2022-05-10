@@ -15,7 +15,16 @@ export class SchoolService {
     return this.http.post<School>(`http://localhost:4200/#/login`, school);
   }
 
-  getSchoolProfile(school: School): Observable<School> {
-    return this.http.get<School>(`http://localhost:4200/#/`);
+  getSchoolProfile(schoolName: string): Observable<School> {
+    return this.http.get<School>(
+      `http://localhost:4200/#/school/${schoolName}`
+    );
+  }
+
+  editSchoolProfile(school: School): Observable<School> {
+    return this.http.put<School>(
+      `http://localhost:4200/#/school/view/${school.name}`,
+      school
+    );
   }
 }

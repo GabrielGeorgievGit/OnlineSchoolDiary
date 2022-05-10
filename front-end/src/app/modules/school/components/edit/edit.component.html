@@ -14,10 +14,9 @@
 
     <mat-form-field class="schoolDetails" appearance="fill">
       <mat-label>Classes</mat-label>
-      <mat-select formControlName="classes" multiple>
-        <mat-option>Pre-school</mat-option>
-        <mat-option *ngFor="let class of classes; index as i">
-          {{ i + 1 }}
+      <mat-select [formControlName]="'classes'" multiple>
+        <mat-option *ngFor="let class of classes" [value]="class">
+          {{ class }}
         </mat-option>
       </mat-select>
 

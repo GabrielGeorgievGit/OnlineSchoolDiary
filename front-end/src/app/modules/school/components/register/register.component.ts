@@ -11,7 +11,7 @@ import { SchoolService } from 'src/app/Services/school.service';
 })
 export class RegisterComponent implements OnInit {
   formGroup: FormGroup;
-  classes = Array(12).fill(false);
+  classes: string[];
   subjects: string[];
 
   @Input() set school(value: School) {
@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
     private readonly schoolService: SchoolService,
     private readonly router: Router
   ) {
+    this.classes = RegisterComponent.classesGet();
     this.subjects = [];
     this.formGroup = this.formBuild.group({
       name: this.formBuild.control('', [
@@ -70,4 +71,12 @@ export class RegisterComponent implements OnInit {
   // get classes() {
   //   return this.formGroup.get('classesNums') as FormArray;
   // }
+
+  static classesGet(): string[] {
+    let arr = ['Pre-school'];
+    for (let i = 1; i < 13; ++i) {
+      arr.push('' + i);
+    }
+    return arr;
+  }
 }

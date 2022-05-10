@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { School } from 'src/app/models/School';
 import { SchoolService } from 'src/app/Services/school.service';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-edit',
@@ -12,7 +13,7 @@ import { SchoolService } from 'src/app/Services/school.service';
 export class EditComponent implements OnInit {
   school: School;
   formGroup: FormGroup;
-  classes = Array(12).fill(false);
+  classes: string[];
   subjects: string[];
 
   // @Input() set school(value: School) {
@@ -38,17 +39,18 @@ export class EditComponent implements OnInit {
     */
     this.school = {
       name: 'Ivan',
-      classes: ['1', '2'],
+      classes: ['1', '2', '3'],
       subjects: ['Български език', 'Математика'],
     };
     this.subjects = [];
+    this.classes = RegisterComponent.classesGet();
 
     this.formGroup = this.formBuild.group({
-      name: this.formBuild.control('this.school.name'),
-      classes: this.formBuild.control(['1', '2', '3']),
+      name: this.formBuild.control(this.school.name),
+      classes: this.formBuild.control(''),
       subjects: this.formBuild.array([]),
     });
-    this.formGroup.controls['classes'].setValue(['1', '2']);
+    this.formGroup.controls['classes'].setValue(this.school.classes);
 
     this.school.subjects.forEach((s) => this.newSubject(s));
   }
