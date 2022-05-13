@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
 -- Host: localhost    Database: sdiarydb
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,18 +23,18 @@ DROP TABLE IF EXISTS `mark`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mark` (
-  `idMark` int unsigned NOT NULL AUTO_INCREMENT,
-  `idStudent` int unsigned NOT NULL,
-  `idSubject` int unsigned NOT NULL,
-  `idTeacher` int unsigned NOT NULL,
+  `id_mark` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_student` int unsigned NOT NULL,
+  `id_subject` int unsigned NOT NULL,
+  `id_teacher` int unsigned NOT NULL,
   `mark` int unsigned NOT NULL,
-  PRIMARY KEY (`idMark`),
-  KEY `idStudent_idx` (`idStudent`),
-  KEY `idTeacher_idx` (`idTeacher`),
-  KEY `idSubject_idx` (`idSubject`),
-  CONSTRAINT `idStudentMark` FOREIGN KEY (`idStudent`) REFERENCES `student` (`idStudent`),
-  CONSTRAINT `idSubjectMark` FOREIGN KEY (`idSubject`) REFERENCES `subject` (`idSubject`),
-  CONSTRAINT `idTeacherMark` FOREIGN KEY (`idTeacher`) REFERENCES `teacher` (`idTeacher`)
+  PRIMARY KEY (`id_mark`),
+  KEY `idStudent_idx` (`id_student`),
+  KEY `idTeacher_idx` (`id_teacher`),
+  KEY `idSubject_idx` (`id_subject`),
+  CONSTRAINT `idStudentMark` FOREIGN KEY (`id_student`) REFERENCES `student` (`id_student`),
+  CONSTRAINT `idSubjectMark` FOREIGN KEY (`id_subject`) REFERENCES `subject` (`id_subject`),
+  CONSTRAINT `idTeacherMark` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id_teacher`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-13 13:12:38
+-- Dump completed on 2022-05-13 15:25:19

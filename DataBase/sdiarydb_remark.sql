@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
 -- Host: localhost    Database: sdiarydb
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `remark`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `remark` (
-  `idRemark` int unsigned NOT NULL AUTO_INCREMENT,
-  `Remark` varchar(500) NOT NULL,
-  `idStudent` int unsigned NOT NULL,
-  PRIMARY KEY (`idRemark`),
-  KEY `idStudent_idx` (`idStudent`),
-  CONSTRAINT `idStudentRem` FOREIGN KEY (`idStudent`) REFERENCES `student` (`idStudent`)
+  `id_remark` int unsigned NOT NULL AUTO_INCREMENT,
+  `remark` varchar(500) NOT NULL,
+  `id_student` int unsigned NOT NULL,
+  PRIMARY KEY (`id_remark`),
+  KEY `idStudent_idx` (`id_student`),
+  CONSTRAINT `idStudentRem` FOREIGN KEY (`id_student`) REFERENCES `student` (`id_student`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-13 13:12:39
+-- Dump completed on 2022-05-13 15:25:19

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
 -- Host: localhost    Database: sdiarydb
 -- ------------------------------------------------------
--- Server version	8.0.28
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `subject`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `subject` (
-  `idSubject` int unsigned NOT NULL AUTO_INCREMENT,
-  `Subject` varchar(45) NOT NULL,
-  PRIMARY KEY (`idSubject`),
-  UNIQUE KEY `Subject_UNIQUE` (`Subject`)
+  `id_subject` int unsigned NOT NULL AUTO_INCREMENT,
+  `subject` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_subject`),
+  UNIQUE KEY `Subject_UNIQUE` (`subject`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-13 13:12:38
+-- Dump completed on 2022-05-13 15:25:20
