@@ -11,9 +11,23 @@
       <mat-error *ngIf="formGroup.get('name')?.errors?.['minlength']"
         >Min length is 3 symbols.</mat-error
       >
+      <mat-error *ngIf="formGroup.get('name')?.errors?.['maxlength']"
+        >Max length is 45 symbols.</mat-error
+      >
     </mat-form-field>
 
-    <mat-form-field class="schoolDetails" appearance="fill">
+    <label id="radio-group-label">School type</label>
+    <mat-radio-group class="radio-group" aria-labelledby="radio-group-label">
+      <mat-radio-button
+        class="radio-btn"
+        *ngFor="let type of types"
+        [value]="type"
+        [checked]="types[0] === type"
+        >{{ type }}</mat-radio-button
+      >
+    </mat-radio-group>
+
+    <!-- <mat-form-field class="schoolDetails" appearance="fill">
       <mat-label>Classes</mat-label>
       <mat-select formControlName="classes" multiple>
         <mat-option *ngFor="let class of classes" [value]="class">
@@ -45,12 +59,12 @@
           <mat-icon>delete</mat-icon>
         </button>
       </div>
-    </ng-container>
+    </ng-container> -->
 
     <div class="buttonsContainer">
-      <button mat-raised-button type="button" (click)="addSubject()">
+      <!-- <button mat-raised-button type="button" (click)="addSubject()">
         Add subject
-      </button>
+      </button> -->
       <button
         mat-raised-button
         id="submit"

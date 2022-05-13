@@ -22,7 +22,7 @@ import { TeachersComponent } from './modules/school/components/teachers/teachers
 import { MatTableModule } from '@angular/material/table';
 import { ShowTeachersComponent } from './modules/school/components/show-teachers/show-teachers.component';
 import { EditTeacherComponent } from './modules/school/components/edit-teacher/edit-teacher.component';
-
+import { MatRadioModule } from '@angular/material/radio';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +50,7 @@ import { EditTeacherComponent } from './modules/school/components/edit-teacher/e
     MatSelectModule,
     HttpClientModule,
     MatTableModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

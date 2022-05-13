@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { School } from 'src/app/models/School';
 import { SchoolService } from 'src/app/Services/school.service';
+import { Size } from 'src/app/shared/const/Size';
 
 @Component({
   selector: 'app-register',
@@ -11,8 +12,8 @@ import { SchoolService } from 'src/app/Services/school.service';
 })
 export class RegisterComponent implements OnInit {
   formGroup: FormGroup;
-  classes: string[];
-  subjects: string[];
+  types: string[];
+  //subjects: string[];
 
   @Input() set school(value: School) {
     if (value) {
@@ -25,15 +26,16 @@ export class RegisterComponent implements OnInit {
     private readonly schoolService: SchoolService,
     private readonly router: Router
   ) {
-    this.classes = RegisterComponent.classesGet();
-    this.subjects = [];
+    this.types = RegisterComponent.getSchoolTypes();
+    //this.subjects = [];
     this.formGroup = this.formBuild.group({
-      name: this.formBuild.control('', [
+      name: this.formBuild.control(this.school.name, [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(Size.SCHOOL_NAME_MIN_LENGTH),
+        Validators.maxLength(Size.SCHOOL_NAME_MAX_LENGTH),
       ]),
-      classes: this.formBuild.control('', [Validators.required]),
-      subjects: this.formBuild.array([]),
+      types: this.formBuild.control(''),
+      //subjects: this.formBuild.array([]),
     });
   }
 
@@ -47,36 +49,36 @@ export class RegisterComponent implements OnInit {
         console.log('kyss');
       },
       error: (response) => {
-        console.log(this.formGroup.get('classes')?.value);
+        console.log(this.formGroup.get('types')?.value);
       },
     });
   }
 
-  get subjectsFormArray() {
-    return this.formGroup.get('subjects') as FormArray;
+  static getSchoolTypes(): string[] {
+    return ['СОУ', 'ОУ', 'СУ'];
   }
 
-  addSubject() {
-    this.subjectsFormArray.push(
-      this.formBuild.group({
-        name: ['', Validators.required],
-      })
-    );
-  }
-
-  removeSubject(index: number) {
-    this.subjectsFormArray.removeAt(index);
-  }
-
-  // get classes() {
-  //   return this.formGroup.get('classesNums') as FormArray;
+  // get subjectsFormArray() {
+  //   return this.formGroup.get('subjects') as FormArray;
   // }
 
-  static classesGet(): string[] {
-    let arr = ['Pre-school'];
-    for (let i = 1; i < 13; ++i) {
-      arr.push('' + i);
-    }
-    return arr;
-  }
+  // addSubject() {
+  //   this.subjectsFormArray.push(
+  //     this.formBuild.group({
+  //       name: ['', Validators.required],
+  //     })
+  //   );
+  // }
+
+  // removeSubject(index: number) {
+  //   this.subjectsFormArray.removeAt(index);
+  // }
+
+  // static classesGet(): string[] {
+  //   let arr = ['Pre-school'];
+  //   for (let i = 1; i < 13; ++i) {
+  //     arr.push('' + i);
+  //   }
+  //   return arr;
+  // }
 }

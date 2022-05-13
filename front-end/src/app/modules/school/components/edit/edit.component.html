@@ -8,24 +8,25 @@
         >School name is required.</mat-error
       >
       <mat-error *ngIf="formGroup.get('name')?.errors?.['minlength']"
-        >Min length is 3 symbols.</mat-error
+        >Min length is 6 symbols.</mat-error
+      >
+      <mat-error *ngIf="formGroup.get('name')?.errors?.['maxlength']"
+        >Max length is 45 symbols.</mat-error
       >
     </mat-form-field>
 
-    <mat-form-field class="schoolDetails" appearance="fill">
-      <mat-label>Classes</mat-label>
-      <mat-select [formControlName]="'classes'" multiple>
-        <mat-option *ngFor="let class of classes" [value]="class">
-          {{ class }}
-        </mat-option>
-      </mat-select>
+    <label id="radio-group-label">School type</label>
+    <mat-radio-group class="radio-group" aria-labelledby="radio-group-label">
+      <mat-radio-button
+        class="radio-btn"
+        *ngFor="let type of types"
+        [value]="type"
+        [checked]="types[0] === type"
+        >{{ type }}</mat-radio-button
+      >
+    </mat-radio-group>
 
-      <mat-error *ngIf="formGroup.get('classes')?.errors?.['required']">
-        Choosing classes is a required field
-      </mat-error>
-    </mat-form-field>
-
-    <mat-label>Subjects: </mat-label>
+    <!-- <mat-label>Subjects: </mat-label>
     <ng-container formArrayName="subjects">
       <div
         *ngFor="let subject of subjectsFormArray.controls; index as i"
@@ -44,12 +45,12 @@
           <mat-icon>delete</mat-icon>
         </button>
       </div>
-    </ng-container>
+    </ng-container> -->
 
     <div class="buttonsContainer">
-      <button mat-raised-button type="button" (click)="addSubject()">
+      <!-- <button mat-raised-button type="button" (click)="addSubject()">
         Add subject
-      </button>
+      </button> -->
 
       <button mat-raised-button type="button" (click)="editTeachers()">
         Edit Teachers

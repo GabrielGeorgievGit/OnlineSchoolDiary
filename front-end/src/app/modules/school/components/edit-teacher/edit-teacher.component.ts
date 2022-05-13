@@ -11,11 +11,10 @@ export class EditTeacherComponent implements OnInit {
   constructor() {
     this.teacher = {
       id: 0,
-      firstName: 'Ivan',
-      secondName: 'AA',
-      thirdName: 'BB',
-      subjectOne: 'MAT',
-      subjectTwo: '',
+      fullName: 'Ivan',
+      email: 'ivan@ivan.iv',
+      password: 'vanko123',
+      idSchool: 1,
     };
   }
 

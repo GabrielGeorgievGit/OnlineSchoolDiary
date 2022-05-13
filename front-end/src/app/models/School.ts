@@ -1,7 +1,7 @@
 export interface School {
   name: string;
-  classes: string[];
-  subjects: string[];
+  types: string[];
+  //subjects: string[];
 
   // address: string;
   // director: string;

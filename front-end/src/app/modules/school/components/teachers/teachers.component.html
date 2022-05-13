@@ -1,51 +1,75 @@
 <mat-card class="form-container">
   <form [formGroup]="formGroup" (submit)="handleSubmit()">
     <mat-form-field class="schoolDetails" appearance="fill">
-      <mat-label>First name</mat-label>
-      <input formControlName="firstName" matInput />
-      <mat-error *ngIf="formGroup.get('firstName')?.errors?.['required']"
+      <mat-label>Full Name</mat-label>
+      <input formControlName="fullName" matInput />
+      <mat-error *ngIf="formGroup.get('fullName')?.errors?.['required']"
         >Teacher name is required.</mat-error
       >
-      <mat-error *ngIf="formGroup.get('firstName')?.errors?.['minlength']"
+      <mat-error *ngIf="formGroup.get('fullName')?.errors?.['minlength']"
         >Min length is 3 symbols.</mat-error
       >
+      <mat-error *ngIf="formGroup.get('fullName')?.errors?.['maxlength']"
+        >Max length is 60 symbols.</mat-error
+      >
     </mat-form-field>
 
     <mat-form-field class="schoolDetails" appearance="fill">
-      <mat-label>Second name</mat-label>
-      <input formControlName="secondName" matInput />
-      <mat-error *ngIf="formGroup.get('secondName')?.errors?.['required']"
-        >Teacher name is required.</mat-error
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput />
+      <mat-error *ngIf="formGroup.get('email')?.errors?.['required']"
+        >Teacher email is required.</mat-error
       >
-      <mat-error *ngIf="formGroup.get('secondName')?.errors?.['minlength']"
+      <mat-error *ngIf="formGroup.get('email')?.errors?.['minlength']"
         >Min length is 3 symbols.</mat-error
       >
+      <mat-error *ngIf="formGroup.get('email')?.errors?.['maxlength']"
+        >Max length is 45 symbols.</mat-error
+      >
     </mat-form-field>
 
     <mat-form-field class="schoolDetails" appearance="fill">
-      <mat-label>Third name</mat-label>
-      <input formControlName="thirdName" matInput />
-      <mat-error *ngIf="formGroup.get('thirdName')?.errors?.['required']"
-        >Teacher name is required.</mat-error
+      <mat-label>Password</mat-label>
+      <input
+        formControlName="password"
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        [attr.aria-label]="'Hide Password'"
+        [attr.aria-pressed]="hidePassword"
+        type="button"
       >
-      <mat-error *ngIf="formGroup.get('thirdName')?.errors?.['minlength']"
+        <mat-icon matSuffix>{{
+          hidePassword ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+      <mat-error *ngIf="formGroup.get('password')?.errors?.['required']"
+        >Teacher password is required.</mat-error
+      >
+      <mat-error *ngIf="formGroup.get('password')?.errors?.['minlength']"
         >Min length is 3 symbols.</mat-error
       >
-    </mat-form-field>
-
-    <mat-form-field class="schoolDetails" appearance="fill">
-      <mat-label>Subject one</mat-label>
-      <input formControlName="subjectOne" matInput />
-      <mat-error *ngIf="formGroup.get('subjectOne')?.errors?.['required']"
-        >Subject one is required.</mat-error
+      <mat-error *ngIf="formGroup.get('password')?.errors?.['maxlength']"
+        >Max length is 45 symbols.</mat-error
       >
     </mat-form-field>
 
     <mat-form-field class="schoolDetails" appearance="fill">
-      <mat-label>Subject two</mat-label>
-      <input formControlName="subjectTwo" matInput />
-      <mat-error *ngIf="formGroup.get('subjectTwo')?.errors?.['required']"
-        >Subject two is required.</mat-error
+      <mat-label>Repeat Password</mat-label>
+      <input formControlName="repeatPassword" matInput [type]="'password'" />
+
+      <mat-error *ngIf="formGroup.get('repeatPassword')?.errors?.['required']"
+        >Teacher repeated password is required.</mat-error
+      >
+      <mat-error *ngIf="formGroup.get('repeatPassword')?.errors?.['minlength']"
+        >Min length is 3 symbols.</mat-error
+      >
+      <mat-error *ngIf="formGroup.get('repeatPassword')?.errors?.['maxlength']"
+        >Max length is 45 symbols.</mat-error
       >
     </mat-form-field>
 

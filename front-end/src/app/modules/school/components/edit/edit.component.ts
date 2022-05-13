@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { School } from 'src/app/models/School';
 import { SchoolService } from 'src/app/Services/school.service';
+import { Size } from 'src/app/shared/const/Size';
 import { RegisterComponent } from '../register/register.component';
 
 @Component({
@@ -13,8 +14,7 @@ import { RegisterComponent } from '../register/register.component';
 export class EditComponent implements OnInit {
   school: School;
   formGroup: FormGroup;
-  classes: string[];
-  subjects: string[];
+  types = RegisterComponent.getSchoolTypes();
 
   // @Input() set school(value: School) {
   //   if (value) {
@@ -39,49 +39,51 @@ export class EditComponent implements OnInit {
     */
     this.school = {
       name: 'Ivan',
-      classes: ['1', '2', '3'],
-      subjects: ['Български език', 'Математика'],
+      //classes: ['1', '2', '3'],
+      types: this.types,
     };
-    this.subjects = [];
-    this.classes = RegisterComponent.classesGet();
 
     this.formGroup = this.formBuild.group({
-      name: this.formBuild.control(this.school.name),
-      classes: this.formBuild.control(''),
-      subjects: this.formBuild.array([]),
+      name: this.formBuild.control(this.school.name, [
+        Validators.required,
+        Validators.minLength(Size.SCHOOL_NAME_MIN_LENGTH),
+        Validators.maxLength(Size.SCHOOL_NAME_MAX_LENGTH),
+      ]),
+      types: this.formBuild.control(this.types[0]),
+      //subjects: this.formBuild.array([]),
     });
-    this.formGroup.controls['classes'].setValue(this.school.classes);
+    this.formGroup.controls['types'].setValue(this.school.types);
 
-    this.school.subjects.forEach((s) => this.newSubject(s));
+    //this.school.subjects.forEach((s) => this.newSubject(s));
   }
 
   ngOnInit(): void {}
 
   handleSubmit() {}
 
-  get subjectsFormArray() {
-    return this.formGroup.get('subjects') as FormArray;
-  }
+  // get subjectsFormArray() {
+  //   return this.formGroup.get('subjects') as FormArray;
+  // }
 
-  addSubject() {
-    this.subjectsFormArray.push(
-      this.formBuild.group({
-        name: [''],
-      })
-    );
-  }
+  // addSubject() {
+  //   this.subjectsFormArray.push(
+  //     this.formBuild.group({
+  //       name: [''],
+  //     })
+  //   );
+  // }
 
-  newSubject(subject: string): void {
-    this.subjectsFormArray.push(
-      this.formBuild.group({
-        name: [subject],
-      })
-    );
-  }
+  // newSubject(subject: string): void {
+  //   this.subjectsFormArray.push(
+  //     this.formBuild.group({
+  //       name: [subject],
+  //     })
+  //   );
+  // }
 
-  removeSubject(index: number) {
-    this.subjectsFormArray.removeAt(index);
-  }
+  // removeSubject(index: number) {
+  //   this.subjectsFormArray.removeAt(index);
+  // }
 
   editTeachers() {}
 

@@ -14,12 +14,11 @@ export class ShowTeachersComponent implements OnInit {
 
     for (let i = 0; i < 30; ++i) {
       this.teachers.push({
-        id: i,
-        firstName: 'Ivan',
-        secondName: 'Dimitrov',
-        thirdName: 'Ivanov',
-        subjectOne: 'Math',
-        subjectTwo: 'None',
+        id: 0,
+        fullName: 'Ivan',
+        email: 'ivan@ivan.iv',
+        password: 'vanko123',
+        idSchool: 1,
       });
     }
   }

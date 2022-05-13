@@ -3,9 +3,17 @@
     <mat-card-title>Login</mat-card-title>
 
     <mat-form-field class="formDetails" appearance="fill">
-      <mat-label>Username</mat-label>
-      <input formControlName="username" matInput />
-      <mat-error></mat-error>
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput />
+      <mat-error *ngIf="loginForm.get('email')?.errors?.['required']"
+        >Email is required.</mat-error
+      >
+      <mat-error *ngIf="loginForm.get('email')?.errors?.['minlength']"
+        >Min length is 6 symbols.</mat-error
+      >
+      <mat-error *ngIf="loginForm.get('email')?.errors?.['maxlength']"
+        >Max length is 45 symbols.</mat-error
+      >
     </mat-form-field>
 
     <mat-form-field class="formDetails" appearance="fill">
@@ -28,7 +36,15 @@
         }}</mat-icon>
       </button>
 
-      <mat-error></mat-error>
+      <mat-error *ngIf="loginForm.get('password')?.errors?.['required']"
+        >Password is required.</mat-error
+      >
+      <mat-error *ngIf="loginForm.get('password')?.errors?.['minlength']"
+        >Min length is 6 symbols.</mat-error
+      >
+      <mat-error *ngIf="loginForm.get('password')?.errors?.['maxlength']"
+        >Max length is 45 symbols.</mat-error
+      >
     </mat-form-field>
 
     <button mat-raised-button id="login-btn" [disabled]="loginForm.invalid">

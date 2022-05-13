@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Teacher } from 'src/app/models/Teacher';
 import { SchoolService } from 'src/app/Services/school.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { Size } from 'src/app/shared/const/Size';
 
 @Component({
   selector: 'app-teachers',
@@ -11,6 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./teachers.component.css'],
 })
 export class TeachersComponent implements OnInit {
+  hidePassword = true;
   formGroup: FormGroup;
   dataSource = new MatTableDataSource<Teacher>();
   teachers: Teacher[];
@@ -28,29 +30,34 @@ export class TeachersComponent implements OnInit {
   ) {
     this.teachers = [];
     this.formGroup = formBuild.group({
-      firstName: this.formBuild.control('', [
+      fullName: this.formBuild.control('', [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(Size.FULLNAME_MIN_LENGTH),
+        Validators.maxLength(Size.FULLNAME_MAX_LENGTH),
       ]),
-      secondName: this.formBuild.control('', [
+      email: this.formBuild.control('', [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(Size.EMAIL_MIN_LENGTH),
+        Validators.maxLength(Size.EMAIL_MAX_LENGTH),
       ]),
-      thirdName: this.formBuild.control('', [
+      password: this.formBuild.control('', [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(Size.PASSWORD_MIN_LENGTH),
+        Validators.maxLength(Size.PASSWORD_MAX_LENGTH),
       ]),
-      subjectOne: this.formBuild.control('', Validators.required),
-      subjectTwo: this.formBuild.control(''),
+      repeatPassword: this.formBuild.control('', [
+        Validators.required,
+        Validators.minLength(Size.PASSWORD_MIN_LENGTH),
+        Validators.maxLength(Size.PASSWORD_MAX_LENGTH),
+      ]),
     });
 
     this.teachers.push({
       id: 0,
-      firstName: 'Ivan',
-      secondName: 'Dimitrov',
-      thirdName: 'Ivanov',
-      subjectOne: 'Math',
-      subjectTwo: 'None',
+      fullName: 'Ivan',
+      email: 'ivan@ivan.iv',
+      password: 'vanko123',
+      idSchool: 1,
     });
   }
 
