@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
-import { EditTeacherComponent } from './modules/school/components/edit-teacher/edit-teacher.component';
-import { EditComponent } from './modules/school/components/edit/edit.component';
-import { RegisterComponent } from './modules/school/components/register/register.component';
+import { EditTeacherComponent } from './modules/school/components/teacher/edit-teacher/edit-teacher.component';
+import { EditComponent } from './modules/school/components/school/edit/edit.component';
+import { RegisterComponent } from './modules/school/components/school/register/register.component';
 import { SchoolAdminComponent } from './modules/school/components/school-admin/school-admin.component';
-import { ShowTeachersComponent } from './modules/school/components/show-teachers/show-teachers.component';
-import { TeachersComponent } from './modules/school/components/teachers/teachers.component';
+import { ShowTeachersComponent } from './modules/school/components/teacher/show-teachers/show-teachers.component';
+import { TeachersComponent } from './modules/school/components/teacher/teachers/teachers.component';
+import { ViewComponent } from './modules/school/components/term/view/view.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'school/edit/teachers/edit',
     component: EditTeacherComponent,
+  },
+  {
+    path: 'school/edit/classes',
+    component: ViewComponent,
   },
 ];
 

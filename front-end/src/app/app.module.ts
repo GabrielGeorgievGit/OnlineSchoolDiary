@@ -14,14 +14,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { SchoolAdminComponent } from './modules/school/components/school-admin/school-admin.component';
-import { RegisterComponent } from './modules/school/components/register/register.component';
+import { RegisterComponent } from './modules/school/components/school/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ViewComponent } from './modules/school/components/view/view.component';
-import { EditComponent } from './modules/school/components/edit/edit.component';
-import { TeachersComponent } from './modules/school/components/teachers/teachers.component';
+import { ViewComponent } from './modules/school/components/term/view/view.component';
+import { EditComponent } from './modules/school/components/school/edit/edit.component';
+import { TeachersComponent } from './modules/school/components/teacher/teachers/teachers.component';
 import { MatTableModule } from '@angular/material/table';
-import { ShowTeachersComponent } from './modules/school/components/show-teachers/show-teachers.component';
-import { EditTeacherComponent } from './modules/school/components/edit-teacher/edit-teacher.component';
+import { ShowTeachersComponent } from './modules/school/components/teacher/show-teachers/show-teachers.component';
+import { EditTeacherComponent } from './modules/school/components/teacher/edit-teacher/edit-teacher.component';
 import { MatRadioModule } from '@angular/material/radio';
 @NgModule({
   declarations: [
