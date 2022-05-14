@@ -1,0 +1,73 @@
+.demo-table {
+    width: 100%;
+  }
+  
+  .mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+    text-align: center;
+  }
+  table {
+    margin-bottom: 1rem;
+  }
+  
+  th {
+    font-size: xx-large;
+    font-weight: bold;
+  }
+
+  td {
+    font-size: x-large;
+  }
+
+  .mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+}
+
+button {
+    font-size: x-large;
+    font-family: "Montserrat", sans-serif;
+}
+
+.buttonsContainer {
+  display: flex;
+  width: 450px;
+  justify-content: right;
+  align-items: space-around;
+  margin-bottom: 1rem;
+}
+
+.form-container {
+  margin: 5rem auto;
+  padding: 3.4rem 0;
+  box-shadow: 0px 3px 7px 5px rgba(0,0,0,0.4);
+  width: 70%;
+}
+
+.formDetails {
+    width: 30%;
+    margin-bottom: 1rem;
+    font-family: "Montserrat", sans-serif;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 30vh; 
+}

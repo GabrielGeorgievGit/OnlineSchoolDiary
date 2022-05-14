@@ -11,7 +11,7 @@
   <ng-template #noSchool>
     <div class="no-school">
       <h3>You don't have registered school.</h3>
-      <button color="primary" mat-raised-button routerLink="/school/register">
+      <button color="primary" mat-raised-button (click)="registerSchool()">
         Register school
       </button>
     </div>

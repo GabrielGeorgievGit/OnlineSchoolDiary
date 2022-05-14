@@ -8,7 +8,9 @@ import { RegisterComponent } from './modules/school/components/school/register/r
 import { SchoolAdminComponent } from './modules/school/components/school-admin/school-admin.component';
 import { ShowTeachersComponent } from './modules/school/components/teacher/show-teachers/show-teachers.component';
 import { TeachersComponent } from './modules/school/components/teacher/teachers/teachers.component';
-import { ViewComponent } from './modules/school/components/term/view/view.component';
+import { ViewComponent } from './modules/school/components/class/view/view.component';
+import { EditGradeComponent } from './modules/school/components/class/edit-grade/edit-grade.component';
+import { SubjectsComponent } from './modules/school/components/class/subjects/subjects.component';
 
 const routes: Routes = [
   {
@@ -24,28 +26,36 @@ const routes: Routes = [
     component: SchoolAdminComponent,
   },
   {
-    path: 'school/register',
+    path: 'school-admin/school/register',
     component: RegisterComponent,
   },
   {
-    path: 'school/edit',
+    path: 'school-admin/school/edit',
     component: EditComponent,
   },
   {
-    path: 'school/edit/teachers/new',
-    component: TeachersComponent,
-  },
-  {
-    path: 'school/edit/teachers',
+    path: 'school-admin/school/teachers',
     component: ShowTeachersComponent,
   },
   {
-    path: 'school/edit/teachers/edit',
+    path: 'school-admin/school/teachers/new',
+    component: TeachersComponent,
+  },
+  {
+    path: 'school-admin/school/teachers/edit',
     component: EditTeacherComponent,
   },
   {
-    path: 'school/edit/classes',
+    path: 'school-admin/school/classes',
     component: ViewComponent,
+  },
+  {
+    path: 'school-admin/school/grade',
+    component: EditGradeComponent,
+  },
+  {
+    path: 'school-admin/school/grade/subjects',
+    component: SubjectsComponent,
   },
 ];
 

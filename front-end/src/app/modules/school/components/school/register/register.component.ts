@@ -27,22 +27,19 @@ export class RegisterComponent implements OnInit {
     private readonly router: Router
   ) {
     this.types = RegisterComponent.getSchoolTypes();
-    //this.subjects = [];
     this.formGroup = this.formBuild.group({
-      name: this.formBuild.control(this.school.name, [
+      name: this.formBuild.control('', [
         Validators.required,
         Validators.minLength(Size.SCHOOL_NAME_MIN_LENGTH),
         Validators.maxLength(Size.SCHOOL_NAME_MAX_LENGTH),
       ]),
       types: this.formBuild.control(''),
-      //subjects: this.formBuild.array([]),
     });
   }
 
   ngOnInit(): void {}
 
   handleSubmit(): void {
-    // this.profileSubmit.emit();
     this.schoolService.registerSchoolProfile(this.formGroup.value).subscribe({
       next: (response) => {
         this.router.navigate([]);

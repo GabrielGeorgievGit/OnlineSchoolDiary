@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { School } from '../models/School';
 
 @Injectable({
@@ -17,13 +15,13 @@ export class SchoolService {
 
   getSchoolProfile(schoolName: string): Observable<School> {
     return this.http.get<School>(
-      `http://localhost:4200/#/school/${schoolName}`
+      `http://localhost:4200/#/school-admin/school/${schoolName}`
     );
   }
 
   editSchoolProfile(school: School): Observable<School> {
     return this.http.put<School>(
-      `http://localhost:4200/#/school/view/${school.name}`,
+      `http://localhost:4200/#/school-admin/school/view/${school.name}`,
       school
     );
   }

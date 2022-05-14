@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { School } from 'src/app/models/School';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-school-admin',
@@ -9,7 +9,11 @@ import { School } from 'src/app/models/School';
 export class SchoolAdminComponent implements OnInit {
   hasSchool = false;
 
-  constructor() {}
+  constructor(private readonly router: Router) {}
 
   ngOnInit(): void {}
+
+  registerSchool() {
+    this.router.navigate(['school-admin/school/register']);
+  }
 }
