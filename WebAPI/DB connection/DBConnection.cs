@@ -4,10 +4,10 @@ namespace WebAPI.DB_connection
 {
     internal class DBConnection
     {
-        string server = "127.0.0.1";
+        string server = "localhost";
         string dataBase = "sdiarydb";
         string username = "root";
-        string password = "ROOT";
+        string password = "Mysql@localhost:3306";
         string constring = "";
 
         public MySqlConnection conn;
