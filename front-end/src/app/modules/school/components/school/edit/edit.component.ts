@@ -40,7 +40,7 @@ export class EditComponent implements OnInit {
     this.school = {
       name: 'Ivan',
       //classes: ['1', '2', '3'],
-      types: this.types,
+      type: this.types[0],
     };
 
     this.formGroup = this.formBuild.group({
@@ -52,7 +52,7 @@ export class EditComponent implements OnInit {
       types: this.formBuild.control(this.types[0]),
       //subjects: this.formBuild.array([]),
     });
-    this.formGroup.controls['types'].setValue(this.school.types);
+    this.formGroup.controls['types'].setValue(this.school.type);
 
     //this.school.subjects.forEach((s) => this.newSubject(s));
   }

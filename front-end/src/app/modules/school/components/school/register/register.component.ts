@@ -1,3 +1,4 @@
+import { JsonpClientBackend } from '@angular/common/http';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -33,21 +34,37 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(Size.SCHOOL_NAME_MIN_LENGTH),
         Validators.maxLength(Size.SCHOOL_NAME_MAX_LENGTH),
       ]),
-      types: this.formBuild.control(''),
+      type: this.formBuild.control(this.types[0]),
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.schoolService.getSchoolProfile().subscribe((data) => {
+      console.log(data);
+    });
+  }
+
+  get form() {
+    return this.formGroup.controls;
+  }
 
   handleSubmit(): void {
-    this.schoolService.registerSchoolProfile(this.formGroup.value).subscribe({
-      next: (response) => {
-        this.router.navigate([]);
-        console.log('kyss');
-      },
-      error: (response) => {
-        console.log(this.formGroup.get('types')?.value);
-      },
+    this.schoolService
+      .registerSchoolProfile({
+        name: this.form['name'].value,
+        type: this.form['type'].value,
+      })
+      .subscribe({
+        next: (response) => {
+          this.router.navigate(['school-admin/school/edit']);
+        },
+        error: (response) => {
+          console.log(response);
+        },
+      });
+    console.log({
+      name: this.form['name'].value,
+      type: this.form['type'].value,
     });
   }
 

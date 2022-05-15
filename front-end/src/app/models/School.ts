@@ -1,6 +1,6 @@
 export interface School {
   name: string;
-  types: string[];
+  type: string;
   //subjects: string[];
 
   // address: string;

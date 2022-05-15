@@ -17,7 +17,11 @@
     </mat-form-field>
 
     <label id="radio-group-label">School type</label>
-    <mat-radio-group class="radio-group" aria-labelledby="radio-group-label">
+    <mat-radio-group
+      class="radio-group"
+      aria-labelledby="radio-group-label"
+      formControlName="type"
+    >
       <mat-radio-button
         class="radio-btn"
         *ngFor="let type of types"
@@ -70,7 +74,6 @@
         id="submit"
         type="submit"
         [disabled]="formGroup.invalid"
-        routerLink="../edit"
       >
         Next
       </button>

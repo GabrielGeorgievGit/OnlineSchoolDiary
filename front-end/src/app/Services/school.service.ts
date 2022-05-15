@@ -10,13 +10,12 @@ export class SchoolService {
   constructor(private readonly http: HttpClient) {}
 
   registerSchoolProfile(school: School): Observable<School> {
-    return this.http.post<School>(`http://localhost:4200/#/login`, school);
+    return this.http.post<School>(`/api/school`, school);
   }
 
-  getSchoolProfile(schoolName: string): Observable<School> {
-    return this.http.get<School>(
-      `http://localhost:4200/#/school-admin/school/${schoolName}`
-    );
+  getSchoolProfile(): Observable<string[]> {
+    return this.http.get<string[]>('/api/school');
+    //`http://localhost:4200/#/school-admin/school/${schoolName}`
   }
 
   editSchoolProfile(school: School): Observable<School> {
