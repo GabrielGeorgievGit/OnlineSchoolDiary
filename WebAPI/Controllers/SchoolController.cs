@@ -21,6 +21,7 @@ namespace WebAPI.Controllers
         {
             Console.WriteLine("School name: " + school.Name);
             Console.WriteLine("School type: " + school.Type);
+
             return Created("~api/school", school);
         }
     }
