@@ -13,9 +13,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("")]
-        public IEnumerable<User> GetTModels()
+        public User GetTModels()
         {
-            return (IEnumerable<User>)Signer.user;
+            return Signer.user;
         }
 
         [HttpPost("")]

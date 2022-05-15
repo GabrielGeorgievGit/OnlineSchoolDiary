@@ -16,8 +16,6 @@
         public string role { get; set; }
         public string name { get; set; }
         public int schoolId { get; set; }
-        public string schoolName { get; set; }
-
 
     }
 }

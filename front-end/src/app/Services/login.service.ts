@@ -15,6 +15,6 @@ export class LoginService {
   }
 
   getUser(): Observable<User> {
-    return this.http.get<User>(`/api/get/user`);
+    return this.http.get<User>(`/api/login`);
   }
 }
