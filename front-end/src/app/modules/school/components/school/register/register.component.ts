@@ -38,11 +38,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.schoolService.getSchoolProfile().subscribe((data) => {
-      console.log(data);
-    });
-  }
+  ngOnInit(): void {}
 
   get form() {
     return this.formGroup.controls;

@@ -12,6 +12,7 @@ import { RegisterComponent } from '../register/register.component';
   styleUrls: ['./edit.component.css'],
 })
 export class EditComponent implements OnInit {
+  schoolAdminId = 2; //sdf
   school: School;
   formGroup: FormGroup;
   types = RegisterComponent.getSchoolTypes();
@@ -37,12 +38,8 @@ export class EditComponent implements OnInit {
       },
     });
     */
-    this.school = {
-      name: 'Ivan',
-      //classes: ['1', '2', '3'],
-      type: this.types[0],
-    };
-
+    //this.school = this.schoolService.getSchoolProfile(1).subscribe({});
+    this.school = { name: 'School Ivan', type: 'СОУ' };
     this.formGroup = this.formBuild.group({
       name: this.formBuild.control(this.school.name, [
         Validators.required,
@@ -85,7 +82,7 @@ export class EditComponent implements OnInit {
   //   this.subjectsFormArray.removeAt(index);
   // }
   editClasses() {
-    this.router.navigate(['school/edit/classes']);
+    this.router.navigate(['school-admin/school/classes']);
   }
 
   editTeachers() {}

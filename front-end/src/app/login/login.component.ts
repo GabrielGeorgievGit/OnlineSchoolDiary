@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../models/User';
 import { LoginService } from '../Services/login.service';
 import { Size } from '../shared/const/Size';
 
@@ -9,6 +10,7 @@ import { Size } from '../shared/const/Size';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  public static loggedUser: User | undefined;
   loginForm: FormGroup;
   hidePassword = true;
   constructor(
@@ -44,10 +46,17 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (response) => {
           console.log(response);
+          this.login.getUser().subscribe({
+            next: (resp) => {
+              LoginComponent.loggedUser = resp;
+            },
+            error: (resp) => {},
+          });
         },
         error: (response) => {
           console.log(response);
         },
       });
+    console.log(LoginComponent.loggedUser);
   }
 }

@@ -13,9 +13,8 @@ export class SchoolService {
     return this.http.post<School>(`/api/school`, school);
   }
 
-  getSchoolProfile(): Observable<string[]> {
-    return this.http.get<string[]>('/api/school');
-    //`http://localhost:4200/#/school-admin/school/${schoolName}`
+  getSchoolProfile(schoolName: string): Observable<School> {
+    return this.http.get<School>(`/api/school/name`);
   }
 
   editSchoolProfile(school: School): Observable<School> {
