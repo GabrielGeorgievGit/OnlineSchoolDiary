@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../Services/login.service';
 import { Size } from '../shared/const/Size';
 
 @Component({
@@ -10,7 +11,10 @@ import { Size } from '../shared/const/Size';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hidePassword = true;
-  constructor(private readonly formBuild: FormBuilder) {
+  constructor(
+    private readonly formBuild: FormBuilder,
+    private readonly login: LoginService
+  ) {
     this.loginForm = this.formBuild.group({
       email: this.formBuild.control('', [
         Validators.required,
@@ -27,5 +31,23 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit() {}
+  onSubmit() {
+    console.log({
+      email: this.loginForm.get('email')?.value,
+      password: this.loginForm.get('password')?.value,
+    });
+    this.login
+      .logIn({
+        email: this.loginForm.get('email')?.value,
+        password: this.loginForm.get('password')?.value,
+      })
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: (response) => {
+          console.log(response);
+        },
+      });
+  }
 }
