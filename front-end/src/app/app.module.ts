@@ -27,6 +27,7 @@ import { EditGradeComponent } from './modules/school/components/class/edit-grade
 import { RegisterStudentComponent } from './modules/school/components/student/register-student/register-student.component';
 import { SubjectsComponent } from './modules/school/components/class/subjects/subjects.component';
 import { ChangeTeacherComponent } from './modules/school/components/class/change-teacher/change-teacher.component';
+import { BackgroundComponent } from './modules/school/components/background/background.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ChangeTeacherComponent } from './modules/school/components/class/change
     RegisterStudentComponent,
     SubjectsComponent,
     ChangeTeacherComponent,
+    BackgroundComponent,
   ],
   imports: [
     BrowserModule,
