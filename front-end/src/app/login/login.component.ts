@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
         error: (response) => {
           console.log('in error1');
           console.log(response);
-          //invalid user
+          alert('Invalid email or password');
         },
       });
   }

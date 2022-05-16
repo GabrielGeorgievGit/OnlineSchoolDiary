@@ -9,7 +9,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { MatCardModule } from '@angular/material/card';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -25,8 +25,8 @@ import { EditTeacherComponent } from './modules/school/components/teacher/edit-t
 import { MatRadioModule } from '@angular/material/radio';
 import { EditGradeComponent } from './modules/school/components/class/edit-grade/edit-grade.component';
 import { RegisterStudentComponent } from './modules/school/components/student/register-student/register-student.component';
-import { MatNativeDateModule } from '@angular/material/core';
 import { SubjectsComponent } from './modules/school/components/class/subjects/subjects.component';
+
 @NgModule({
   declarations: [
     AppComponent,

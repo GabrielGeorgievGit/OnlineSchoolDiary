@@ -1,8 +1,8 @@
 <mat-card class="form-container">
   <div class="content">
     <div class="header">
-      <h1>Students in grade 3a</h1>
-      <h2>Class Teacher: Ivan</h2>
+      <h1>Students in grade {{ grade.classNumber + grade.grade }}</h1>
+      <h2>Class Teacher: {{ grade.teacherName }}</h2>
       <ng-container class="buttonsContainer">
         <button mat-raised-button>Change Class Teacher</button>
         <button
@@ -25,7 +25,7 @@
         </th>
         <td mat-cell *matCellDef="let element">{{ element.fullName }}</td>
       </ng-container>
-      <!-- 
+      <!--
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
       <td mat-cell *matCellDef="let element">{{ element.name }}</td>

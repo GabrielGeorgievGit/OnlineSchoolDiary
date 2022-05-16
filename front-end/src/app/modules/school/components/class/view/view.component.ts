@@ -1,27 +1,11 @@
 import { DataSource } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ReplaySubject, Observable } from 'rxjs';
 import { SchoolClass } from 'src/app/models/SchoolClass';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+import { GradeService } from 'src/app/Services/grade.service';
+import { SchoolClassService } from 'src/app/Services/school.class.service';
+import { EditGradeComponent } from '../edit-grade/edit-grade.component';
 
 @Component({
   selector: 'app-view',
@@ -36,11 +20,26 @@ export class ViewComponent implements OnInit {
 
   classes: SchoolClass[];
 
-  constructor() {
+  constructor(
+    private readonly schoolClass: SchoolClassService,
+    private readonly router: Router,
+    private readonly gradeService: GradeService
+  ) {
     this.classes = [];
+
+    this.schoolClass.getSchoolClasses().subscribe({
+      next: (response) => {
+        this.classes = response;
+      },
+      error: (response) => {},
+    });
+
     for (let i = 1; i < 13; ++i)
-      this.classes.push({ num: i.toString(), terms: ['a', 'b', 'c', 'd'] });
-    this.classes[0].terms.push('e', 'f');
+      this.classes.push({
+        num: i.toString(),
+        terms: ['a', 'b', 'c', 'd', 'e'],
+      });
+
     console.log(this.classes);
     this.dataToDisplay = [...this.classes];
     this.dataSource = new TableDataSource(this.dataToDisplay);
@@ -51,7 +50,15 @@ export class ViewComponent implements OnInit {
   ngOnInit(): void {}
 
   editTerm(clazz: string, term: string) {
-    //this.router
+    this.gradeService
+      .getSchoolGrade({ name: Number.parseInt(clazz), grade: term })
+      .subscribe({
+        next: (response) => {
+          EditGradeComponent.grade = response;
+          this.router.navigate(['school-admin/school/grade']);
+        },
+        error: (response) => console.log(response),
+      });
   }
 
   addTerm() {}

@@ -16,7 +16,11 @@
     </mat-form-field>
 
     <label id="radio-group-label">School type</label>
-    <mat-radio-group class="radio-group" aria-labelledby="radio-group-label">
+    <mat-radio-group
+      formControlName="types"
+      class="radio-group"
+      aria-labelledby="radio-group-label"
+    >
       <mat-radio-button
         class="radio-btn"
         *ngFor="let type of types"

@@ -18,9 +18,6 @@ export class SchoolService {
   }
 
   editSchoolProfile(school: School): Observable<School> {
-    return this.http.put<School>(
-      `http://localhost:4200/#/school-admin/school/view/${school.name}`,
-      school
-    );
+    return this.http.put<School>(`/api/school`, school);
   }
 }

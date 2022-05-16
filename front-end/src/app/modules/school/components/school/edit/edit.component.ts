@@ -52,7 +52,19 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {}
 
   handleSubmit() {
-    //routerLink="../edit";
+    this.school = {
+      name: this.formGroup.get('name')?.value,
+      type: this.formGroup.get('types')?.value,
+    };
+    console.log(this.school);
+    this.schoolService.editSchoolProfile(this.school).subscribe({
+      next: (response) => {
+        alert('Successful change');
+      },
+      error: (response) => {
+        alert('Unsuccessful change');
+      },
+    });
   }
 
   editClasses() {

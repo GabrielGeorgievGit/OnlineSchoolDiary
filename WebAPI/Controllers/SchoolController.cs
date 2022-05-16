@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Queries;
 
 namespace WebAPI.Controllers
 {
@@ -11,9 +12,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("")]
-        public IEnumerable<string> GetTModels()
+        public School getSchool()
         {
-            return new string[] { "Atlanta", "New Yourk", "Ivan" };
+            return Finder.school;
         }
 
         [HttpPost("")]
@@ -22,7 +23,18 @@ namespace WebAPI.Controllers
             Console.WriteLine("School name: " + school.Name);
             Console.WriteLine("School type: " + school.Type);
 
-            return Created("~api/school", school);
+            //Finder.school = Finder.findSchool(school);
+
+            return Created("~api/school", Finder.school);
+        }
+
+        [HttpPut("")]
+        public IActionResult editSchool(School school)
+        {
+            Console.WriteLine("Edit School name: " + school.Name);
+            Console.WriteLine("Edit School type: " + school.Type);
+
+            return Created("~api/school", Finder.school);
         }
     }
 }

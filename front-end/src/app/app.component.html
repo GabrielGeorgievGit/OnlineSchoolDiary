@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <p>Hello</p>
+  <p *ngIf="username !== ''">Hello {{ username }}</p>
   <span class="spacer"></span>
   <div>
     <mat-label>School: Строителен техникум Варна</mat-label>
