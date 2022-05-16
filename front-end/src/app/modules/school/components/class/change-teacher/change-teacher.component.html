@@ -1,0 +1,16 @@
+<mat-card class="form-container">
+  <div class="header">
+    <h2>Change {{ grade.classNumber + grade.grade }}'s class teacher</h2>
+  </div>
+  <div class="content">
+    <mat-form-field appearance="fill" class="schoolDetails">
+      <mat-label>Select Teacher</mat-label>
+      <mat-select [(value)]="teacher">
+        <mat-option *ngFor="let t of teachers" [value]="t.fullName">{{
+          t.fullName
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button (click)="changeTeacher()">Submit</button>
+  </div>
+</mat-card>

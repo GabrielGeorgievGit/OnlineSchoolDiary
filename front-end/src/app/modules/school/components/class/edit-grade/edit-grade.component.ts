@@ -65,4 +65,8 @@ export class EditGradeComponent implements OnInit {
   editSubjects() {
     this.router.navigate(['school-admin/school/grade/subjects']);
   }
+
+  changeTeacher() {
+    this.router.navigate(['school-admin/school/grade/teacher']);
+  }
 }

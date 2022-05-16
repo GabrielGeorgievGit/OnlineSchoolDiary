@@ -11,6 +11,7 @@ import { TeachersComponent } from './modules/school/components/teacher/teachers/
 import { ViewComponent } from './modules/school/components/class/view/view.component';
 import { EditGradeComponent } from './modules/school/components/class/edit-grade/edit-grade.component';
 import { SubjectsComponent } from './modules/school/components/class/subjects/subjects.component';
+import { ChangeTeacherComponent } from './modules/school/components/class/change-teacher/change-teacher.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path: 'school-admin/school/grade/subjects',
     component: SubjectsComponent,
+  },
+  {
+    path: 'school-admin/school/grade/teacher',
+    component: ChangeTeacherComponent,
   },
 ];
 

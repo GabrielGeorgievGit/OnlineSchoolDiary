@@ -26,6 +26,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { EditGradeComponent } from './modules/school/components/class/edit-grade/edit-grade.component';
 import { RegisterStudentComponent } from './modules/school/components/student/register-student/register-student.component';
 import { SubjectsComponent } from './modules/school/components/class/subjects/subjects.component';
+import { ChangeTeacherComponent } from './modules/school/components/class/change-teacher/change-teacher.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SubjectsComponent } from './modules/school/components/class/subjects/su
     EditGradeComponent,
     RegisterStudentComponent,
     SubjectsComponent,
+    ChangeTeacherComponent,
   ],
   imports: [
     BrowserModule,
