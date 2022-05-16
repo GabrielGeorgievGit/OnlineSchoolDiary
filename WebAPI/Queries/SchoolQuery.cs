@@ -41,5 +41,15 @@ namespace WebAPI.Queries
             comand.ExecuteNonQuery();
             connection.close();
         }
+        public void schoolDelite() 
+        {
+            DBConnection connection = new DBConnection();
+            string query = "DELITE FROM school WHERE id_shool=@ischoolId";
+            connection.open();
+            MySqlCommand comand = new MySqlCommand(query, connection.conn);
+            comand.Parameters.Add("@shooId", MySqlDbType.Int32).Value = user.schoolId;
+            comand.ExecuteNonQuery();
+            connection.close();
+        }
     }
 }
