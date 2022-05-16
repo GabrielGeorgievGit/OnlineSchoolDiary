@@ -29,6 +29,17 @@ namespace WebAPI.Queries
             Console.WriteLine("\n  school of user " + user.name + "is not found\n");
             return new School("N/A", "N/A");
         }
-
+        public void schoolEdit(int schoolId,string name,string type)
+        {
+            DBConnection connection=new DBConnection();
+            string query = "UPDATE school SET name=@name , type=@type WHERE id_shool=@ischoolId";
+            connection.open();
+            MySqlCommand comand = new MySqlCommand(query, connection.conn);
+            comand.Parameters.Add("@name", MySqlDbType.VarChar,45).Value = name;
+            comand.Parameters.Add("@name", MySqlDbType.VarChar, 45).Value = type;
+            comand.Parameters.Add("@shooId", MySqlDbType.Int32).Value = user.schoolId;
+            comand.ExecuteNonQuery();
+            connection.close();
+        }
     }
 }
