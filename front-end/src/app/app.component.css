@@ -29,8 +29,24 @@ mat-toolbar {
   color: red;
   font-weight: bold;
 
-  
+
 }
-.button-icon :hover { 
+.button-icon :hover {
   background-color: rgba(45, 6, 198, 0.926);
 }
+
+html {
+  height: 100%;
+}
+
+.container {
+  /* The image used */
+  background-image: url("./shared/img/background.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+

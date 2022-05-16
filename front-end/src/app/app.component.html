@@ -1,15 +1,24 @@
-<mat-toolbar>
-  <p *ngIf="username !== ''">Hello {{ username }}</p>
-  <span class="spacer"></span>
-  <div>
-    <mat-label>School: Строителен техникум Варна</mat-label>
-  </div>
-  <div>
-    <button mat-button color="primary" routerLink="/login" class="button-icon">
-      <span class="icon-wrapper">
-        <mat-icon class="nav-icon">login</mat-icon>Login
-      </span>
-    </button>
-  </div>
-</mat-toolbar>
-<router-outlet></router-outlet>
+<div class="container">
+  <mat-toolbar>
+    <p *ngIf="username !== ''">Hello {{ username }}</p>
+    <span class="spacer"></span>
+    <div>
+      <mat-label>School: Строителен техникум Варна</mat-label>
+    </div>
+    <div>
+      <button
+        mat-button
+        color="primary"
+        routerLink="/login"
+        class="button-icon"
+      >
+        <span class="icon-wrapper">
+          <mat-icon class="nav-icon">login</mat-icon>Login
+        </span>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <app-background></app-background>
+  <router-outlet></router-outlet>
+</div>

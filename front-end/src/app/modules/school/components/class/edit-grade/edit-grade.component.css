@@ -1,7 +1,7 @@
 .demo-table {
     width: 100%;
   }
-  
+
   .mat-row .mat-cell {
     border-bottom: 1px solid transparent;
     border-top: 1px solid transparent;
@@ -11,7 +11,7 @@
   table {
     margin-bottom: 1rem;
   }
-  
+
   th {
     font-size: xx-large;
     font-weight: bold;
@@ -24,7 +24,7 @@
   .mat-row:hover .mat-cell {
     border-color: currentColor;
   }
-  
+
   form {
     display: flex;
     flex-direction: column;
@@ -36,6 +36,7 @@
 button {
     font-size: x-large;
     font-family: "Montserrat", sans-serif;
+    margin-left: 1rem;
 }
 
 .buttonsContainer {
@@ -69,5 +70,6 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 30vh; 
+  height: 30vh;
 }
+
