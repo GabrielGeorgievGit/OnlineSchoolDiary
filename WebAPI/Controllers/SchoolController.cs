@@ -14,7 +14,11 @@ namespace WebAPI.Controllers
         [HttpGet("")]
         public School getSchool()
         {
-            return Finder.school;
+            Finder finder = new Finder();
+            int? userId = Signer.user.id;
+            if (userId == null) return null;
+            School school = finder.findSchool(userId);
+            return school;
         }
 
         [HttpPost("")]

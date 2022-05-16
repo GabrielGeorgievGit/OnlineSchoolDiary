@@ -24,9 +24,11 @@ namespace WebAPI.Queries
             if (reader.Read())
             {
                 School school = new School(reader.GetString("name"), reader.GetString("type"));
+                reader.Close();
                 connection.close();
                 return school;
             }
+            reader.Close();
             connection.close();
            
             Console.WriteLine("\n  school of user " + user.name + "is not found\n");
@@ -42,6 +44,7 @@ namespace WebAPI.Queries
             cmd.Parameters.Add("@type", MySqlDbType.String).Value = school.Type;
 
             MySqlDataReader reader = cmd.ExecuteReader();
+            reader.Close();
             connection.close();
 
             Finder.school = school;
