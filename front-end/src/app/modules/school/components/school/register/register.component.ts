@@ -52,6 +52,9 @@ export class RegisterComponent implements OnInit {
       })
       .subscribe({
         next: (response) => {
+          alert(
+            'Successfully registered ' + this.form['name'].value + ' school'
+          );
           this.router.navigate(['school-admin/school/edit']);
         },
         error: (response) => {
@@ -67,28 +70,4 @@ export class RegisterComponent implements OnInit {
   static getSchoolTypes(): string[] {
     return ['СОУ', 'ОУ', 'СУ'];
   }
-
-  // get subjectsFormArray() {
-  //   return this.formGroup.get('subjects') as FormArray;
-  // }
-
-  // addSubject() {
-  //   this.subjectsFormArray.push(
-  //     this.formBuild.group({
-  //       name: ['', Validators.required],
-  //     })
-  //   );
-  // }
-
-  // removeSubject(index: number) {
-  //   this.subjectsFormArray.removeAt(index);
-  // }
-
-  // static classesGet(): string[] {
-  //   let arr = ['Pre-school'];
-  //   for (let i = 1; i < 13; ++i) {
-  //     arr.push('' + i);
-  //   }
-  //   return arr;
-  // }
 }

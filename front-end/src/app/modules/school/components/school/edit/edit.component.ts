@@ -28,15 +28,6 @@ export class EditComponent implements OnInit {
     private readonly router: Router
   ) {
     this.school = { name: 'School', type: 'СОУ' };
-    this.schoolService.getSchoolProfile().subscribe({
-      next: (response) => {
-        this.school = response;
-      },
-      error: (response) => {
-        console.log(response);
-      },
-    });
-    console.log(this.school);
 
     this.formGroup = this.formBuild.group({
       name: this.formBuild.control(this.school.name, [
@@ -46,10 +37,22 @@ export class EditComponent implements OnInit {
       ]),
       types: this.formBuild.control(this.school.type),
     });
-    this.formGroup.controls['types'].setValue(this.school.type);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.schoolService.getSchoolProfile().subscribe({
+      next: (response) => {
+        this.school = { ...response };
+        console.log(this.school);
+      },
+      error: (response) => {
+        console.log(response);
+      },
+    });
+    console.log(this.school.name);
+    this.formGroup.controls['name'].setValue(this.school.name);
+    this.formGroup.controls['types'].setValue(this.school.type);
+  }
 
   handleSubmit() {
     this.school = {

@@ -14,7 +14,7 @@ export class SchoolService {
   }
 
   getSchoolProfile(): Observable<School> {
-    return this.http.get<School>(`/api/school/name`);
+    return this.http.get<School>(`/api/school`);
   }
 
   editSchoolProfile(school: School): Observable<School> {

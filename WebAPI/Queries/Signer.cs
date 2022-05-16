@@ -31,11 +31,14 @@ namespace WebAPI.Queries
                     if (i == 0)
                     {
                         user = new User(reader.GetInt32("id_school_administrator"), name, email, "admin", schoolId);
+                        reader.Close();
                         return true;
                     }
                     user = new User(reader.GetInt32("id_teacher"), name, email, "teacher", schoolId);
+                    reader.Close();
                     return true;
                 }
+                reader.Close();
                 connection.close();
             }
             return false;

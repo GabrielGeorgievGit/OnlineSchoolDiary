@@ -10,7 +10,9 @@ export class AppComponent implements OnInit {
   username = LoginComponent.loggedUser?.name;
   title = 'Online-School-Diary';
   public static serverUrl: string = 'http://localhost:5207';
-
+  constructor() {
+    this.username = LoginComponent.loggedUser?.name;
+  }
   ngOnInit(): void {
     this.username = LoginComponent.loggedUser?.name;
   }
