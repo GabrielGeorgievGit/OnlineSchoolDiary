@@ -23,9 +23,12 @@ namespace WebAPI.Controllers
             Console.WriteLine("School name: " + school.Name);
             Console.WriteLine("School type: " + school.Type);
 
-            //Finder.school = Finder.findSchool(school);
+            SchoolQuery schoolQuery = new SchoolQuery();
+            School s = schoolQuery.registerSchool(school);
 
-            return Created("~api/school", Finder.school);
+            if (s != null)
+                return Created("~api/school", school);
+            else return BadRequest("Couldn't add to database this school");
         }
 
         [HttpPut("")]

@@ -6,10 +6,13 @@ namespace WebAPI.Queries
 {
     public class SchoolQuery
     {
+        private DBConnection connection;
+        public SchoolQuery() {
+            this.connection = new DBConnection();
+        }
         User user;
         public School readSchool()
         {
-            DBConnection connection = new DBConnection();
 
             string query = "SELECT * FROM school WHERE id_school=@ishoolId";
             connection.open();
@@ -28,6 +31,21 @@ namespace WebAPI.Queries
            
             Console.WriteLine("\n  school of user " + user.name + "is not found\n");
             return new School("N/A", "N/A");
+        }
+
+        public School registerSchool(School school) {
+            string query = "INSERT INTO SCHOOL(name, type) VALUES(@name, @type);";
+            this.connection.open();
+
+            MySqlCommand cmd = new MySqlCommand(query, connection.conn);
+            cmd.Parameters.Add("@name", MySqlDbType.String).Value = school.Name;
+            cmd.Parameters.Add("@type", MySqlDbType.String).Value = school.Type;
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+            connection.close();
+
+            Finder.school = school;
+            return school;
         }
 
     }
