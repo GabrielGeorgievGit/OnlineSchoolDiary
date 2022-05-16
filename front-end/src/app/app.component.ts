@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Online-School-Diary';
+  public static serverUrl: string = 'http://localhost:5207';
 }

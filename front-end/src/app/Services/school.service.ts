@@ -13,7 +13,7 @@ export class SchoolService {
     return this.http.post<School>(`/api/school`, school);
   }
 
-  getSchoolProfile(schoolName: string): Observable<School> {
+  getSchoolProfile(): Observable<School> {
     return this.http.get<School>(`/api/school/name`);
   }
 

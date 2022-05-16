@@ -2,7 +2,7 @@
 {
     public class User
     {
-        public User(int id, string name, string email, string role, int schoolId)
+        public User(int id, string name, string email, string role, int? schoolId)
         {
             this.id = id;
             this.email = email;
@@ -15,7 +15,7 @@
         public string email { get; set; }
         public string role { get; set; }
         public string name { get; set; }
-        public int schoolId { get; set; }
+        public int? schoolId { get; set; }
 
     }
 }

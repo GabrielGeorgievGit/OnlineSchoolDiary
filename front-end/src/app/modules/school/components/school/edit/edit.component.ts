@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { School } from 'src/app/models/School';
 import { SchoolService } from 'src/app/Services/school.service';
@@ -12,7 +12,6 @@ import { RegisterComponent } from '../register/register.component';
   styleUrls: ['./edit.component.css'],
 })
 export class EditComponent implements OnInit {
-  schoolAdminId = 2; //sdf
   school: School;
   formGroup: FormGroup;
   types = RegisterComponent.getSchoolTypes();
@@ -28,59 +27,34 @@ export class EditComponent implements OnInit {
     private readonly schoolService: SchoolService,
     private readonly router: Router
   ) {
-    /*this.schoolService.getSchoolProfile(this.formGroup.value).subscribe({
+    this.school = { name: 'School', type: 'СОУ' };
+    this.schoolService.getSchoolProfile().subscribe({
       next: (response) => {
-        this.router.navigate([]);
-        console.log('kyss');
+        this.school = response;
       },
       error: (response) => {
-        console.log(this.formGroup.get('classes')?.value);
+        console.log(response);
       },
     });
-    */
-    //this.school = this.schoolService.getSchoolProfile(1).subscribe({});
-    this.school = { name: 'School Ivan', type: 'СОУ' };
+    console.log(this.school);
+
     this.formGroup = this.formBuild.group({
       name: this.formBuild.control(this.school.name, [
         Validators.required,
         Validators.minLength(Size.SCHOOL_NAME_MIN_LENGTH),
         Validators.maxLength(Size.SCHOOL_NAME_MAX_LENGTH),
       ]),
-      types: this.formBuild.control(this.types[0]),
-      //subjects: this.formBuild.array([]),
+      types: this.formBuild.control(this.school.type),
     });
     this.formGroup.controls['types'].setValue(this.school.type);
-
-    //this.school.subjects.forEach((s) => this.newSubject(s));
   }
 
   ngOnInit(): void {}
 
-  handleSubmit() {}
+  handleSubmit() {
+    //routerLink="../edit";
+  }
 
-  // get subjectsFormArray() {
-  //   return this.formGroup.get('subjects') as FormArray;
-  // }
-
-  // addSubject() {
-  //   this.subjectsFormArray.push(
-  //     this.formBuild.group({
-  //       name: [''],
-  //     })
-  //   );
-  // }
-
-  // newSubject(subject: string): void {
-  //   this.subjectsFormArray.push(
-  //     this.formBuild.group({
-  //       name: [subject],
-  //     })
-  //   );
-  // }
-
-  // removeSubject(index: number) {
-  //   this.subjectsFormArray.removeAt(index);
-  // }
   editClasses() {
     this.router.navigate(['school-admin/school/classes']);
   }

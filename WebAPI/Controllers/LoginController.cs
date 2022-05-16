@@ -13,7 +13,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("")]
-        public User GetTModels()
+        public User getUser()
         {
             return Signer.user;
         }
@@ -25,8 +25,11 @@ namespace WebAPI.Controllers
             Console.WriteLine("Login email: " + login.Email);
             Console.WriteLine("School pasword: " + login.Password);
             Console.WriteLine("School pasword: " + login.Password);
-            Console.WriteLine("valid acount: " + acount.isValid(login.Email, login.Password).ToString());
-            return Created("~api/login", login);
+            bool isValid = acount.isValid(login.Email, login.Password);
+            Console.WriteLine("valid acount: " + isValid);
+            if (isValid)
+                return Created("~api/login", login);
+            else return NotFound(login);
         }
     }
 }

@@ -21,37 +21,12 @@
         class="radio-btn"
         *ngFor="let type of types"
         [value]="type"
-        [checked]="types[0] === type"
+        [checked]="type === school.type"
         >{{ type }}</mat-radio-button
       >
     </mat-radio-group>
 
-    <!-- <mat-label>Subjects: </mat-label>
-    <ng-container formArrayName="subjects">
-      <div
-        *ngFor="let subject of subjectsFormArray.controls; index as i"
-        fxLayout="row"
-        fxLayoutAlign="space-around center"
-      >
-        <mat-form-field class="schoolSubjects" [formGroupName]="i">
-          <mat-label>Subject name: </mat-label>
-          <input formControlName="name" matInput />
-          <mat-error *ngIf="subject.get('name')?.errors?.['required']"
-            >Subject name is required.</mat-error
-          >
-        </mat-form-field>
-
-        <button mat-icon-button type="button" (click)="removeSubject(i)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-    </ng-container> -->
-
     <div class="buttonsContainer">
-      <!-- <button mat-raised-button type="button" (click)="addSubject()">
-        Add subject
-      </button> -->
-
       <button mat-raised-button type="button" (click)="editClasses()">
         Edit Classes
       </button>
@@ -67,7 +42,6 @@
         id="submit"
         type="submit"
         [disabled]="formGroup.invalid"
-        routerLink="../edit"
       >
         Change
       </button>
