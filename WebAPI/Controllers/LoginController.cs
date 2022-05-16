@@ -24,7 +24,6 @@ namespace WebAPI.Controllers
             Signer acount = new Signer();
             Console.WriteLine("Login email: " + login.Email);
             Console.WriteLine("School pasword: " + login.Password);
-            Console.WriteLine("School pasword: " + login.Password);
             bool isValid = acount.isValid(login.Email, login.Password);
             Console.WriteLine("valid acount: " + isValid);
             if (isValid)
