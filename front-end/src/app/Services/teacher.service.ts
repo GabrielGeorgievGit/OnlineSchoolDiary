@@ -10,8 +10,8 @@ import { Teacher } from '../models/Teacher';
 export class TeacherService {
   constructor(private readonly http: HttpClient) {}
 
-  registerSchoolProfile(school: School): Observable<School> {
-    return this.http.post<School>(`/api/school`, school);
+  getTeachers(): Observable<Teacher[]> {
+    return this.http.get<Teacher[]>(`/api/school/grade/teacher`);
   }
 
   // getSchoolProfile(): Observable<School> {

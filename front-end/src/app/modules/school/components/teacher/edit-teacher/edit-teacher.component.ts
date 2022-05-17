@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Teacher } from 'src/app/models/Teacher';
+import { TeacherService } from 'src/app/Services/teacher.service';
+import { Store } from 'src/app/shared/objects/Store';
 
 @Component({
   selector: 'app-edit-teacher',
@@ -8,17 +10,18 @@ import { Teacher } from 'src/app/models/Teacher';
 })
 export class EditTeacherComponent implements OnInit {
   teacher: Teacher;
-  constructor() {
-    this.teacher = {
-      id: 0,
-      fullName: 'Ivan',
-      email: 'ivan@ivan.iv',
-      password: 'vanko123',
-      idSchool: 1,
-    };
+  constructor(private readonly teacherService: TeacherService) {
+    this.teacher = Store.teacher;
   }
 
   ngOnInit(): void {}
 
-  handleSubmit() {}
+  handleSubmit() {
+    this.teacherService.editTeacher(this.teacher).subscribe({
+      next: (response) => {
+        alert('Successfully changed');
+      },
+      error: (response) => console.log(response),
+    });
+  }
 }

@@ -51,7 +51,6 @@ export class EditComponent implements OnInit {
       },
     });
     console.log(this.school.name);
-   
   }
 
   handleSubmit() {
@@ -75,7 +74,7 @@ export class EditComponent implements OnInit {
   }
 
   editTeachers() {
-    this.router.navigate(['school-admin/school/teachers/new']);
+    this.router.navigate(['school-admin/school/teachers']);
   }
 
   editStudents() {}

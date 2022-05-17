@@ -65,11 +65,21 @@ export class TeachersComponent implements OnInit {
   ngOnInit(): void {}
 
   handleSubmit() {
-    
     this.profileSubmit.emit(this.formGroup.value);
     console.log(this.formGroup.value);
-    this.schoolService.registerTeacher({ id: 2, email: this.formGroup.get('email')?.value, fullName: this.formGroup.get('fullName')?.value, idSchool: LoginComponent.loggedUser?.schoolId, password: this.formGroup.get('password')?.value }).subscribe({
-    });
+    this.schoolService
+      .registerTeacher({
+        id: 2, //without id
+        email: this.formGroup.get('email')?.value,
+        fullName: this.formGroup.get('fullName')?.value,
+        idSchool: LoginComponent.loggedUser?.schoolId,
+        password: this.formGroup.get('password')?.value,
+      })
+      .subscribe({
+        next: (response) => {
+          alert('Successfully added teacher');
+        },
+      });
   }
 
   addTeacher() {}

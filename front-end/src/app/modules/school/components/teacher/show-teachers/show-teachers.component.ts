@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Teacher } from 'src/app/models/Teacher';
+import { TeacherService } from 'src/app/Services/teacher.service';
+import { Store } from 'src/app/shared/objects/Store';
 
 @Component({
   selector: 'app-show-teachers',
@@ -9,27 +11,39 @@ import { Teacher } from 'src/app/models/Teacher';
 })
 export class ShowTeachersComponent implements OnInit {
   teachers: Teacher[];
-  constructor(private readonly router: Router) {
+  constructor(
+    private readonly router: Router,
+    private readonly teacherService: TeacherService
+  ) {
     this.teachers = [];
 
     for (let i = 0; i < 30; ++i) {
       this.teachers.push({
         id: 0,
-        fullName: 'Ivan',
+        fullName: 'Vanko',
         email: 'ivan@ivan.iv',
-        password: 'vanko123',
+        password: '',
         idSchool: 1,
       });
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.teacherService.getTeachers().subscribe({
+      next: (response) => {
+        response.forEach((teacher) => this.teachers.push(teacher));
+      },
+      error: (response) => console.log(response),
+    });
+  }
 
   newTeacher() {
-    this.router.navigate(['school/edit/teachers/new']);
+    this.router.navigate(['school-admin/school/teachers/new']);
   }
 
   editTeacher(i: number) {
-    this.router.navigate([`/${this.teachers[i].id}`]);
+    Store.teacher = this.teachers[i];
+
+    this.router.navigate([`school-admin/school/teachers/edit`]);
   }
 }
