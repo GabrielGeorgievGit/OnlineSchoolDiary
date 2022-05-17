@@ -5,6 +5,7 @@ import { Teacher } from 'src/app/models/Teacher';
 import { SchoolService } from 'src/app/Services/school.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Size } from 'src/app/shared/const/Size';
+import { LoginComponent } from '../../../../../login/login.component';
 
 @Component({
   selector: 'app-teachers',
@@ -64,7 +65,11 @@ export class TeachersComponent implements OnInit {
   ngOnInit(): void {}
 
   handleSubmit() {
+    
     this.profileSubmit.emit(this.formGroup.value);
+    console.log(this.formGroup.value);
+    this.schoolService.registerTeacher({ id: 2, email: this.formGroup.get('email')?.value, fullName: this.formGroup.get('fullName')?.value, idSchool: LoginComponent.loggedUser?.schoolId, password: this.formGroup.get('password')?.value }).subscribe({
+    });
   }
 
   addTeacher() {}

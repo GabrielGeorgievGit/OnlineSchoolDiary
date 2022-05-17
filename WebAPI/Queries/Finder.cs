@@ -68,6 +68,28 @@ namespace WebAPI.Queries {
             return school;
         }
 
+        /*public School findSchoolByName(string name)
+        {
+            if (schoolId == null) return null;
+            School school = null;
+
+            DBConnection connection = new DBConnection();
+            connection.open();
+
+            string query = "SELECT * FROM SCHOOL WHERE id_school=@id";
+            MySqlCommand command = new MySqlCommand(query, connection.conn);
+            command.Parameters.Add("@id", MySqlDbType.Int32).Value = schoolId;
+            MySqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                school = new School(reader.GetString("name"), reader.GetString("type"));
+                reader.Close();
+                connection.close();
+            }
+            return school;
+        }*/
+
     }
 }
 

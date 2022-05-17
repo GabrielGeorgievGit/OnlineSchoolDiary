@@ -35,30 +35,6 @@ namespace WebAPI.Queries
             return new School("N/A", "N/A");
         }
 
-        public void schoolEdit(int schoolId,string name,string type)
-        {
-            DBConnection connection=new DBConnection();
-            string query = "UPDATE school SET name=@name , type=@type WHERE id_shool=@ischoolId";
-            connection.open();
-            MySqlCommand comand = new MySqlCommand(query, connection.conn);
-            comand.Parameters.Add("@name", MySqlDbType.VarChar,45).Value = name;
-            comand.Parameters.Add("@name", MySqlDbType.VarChar, 45).Value = type;
-            comand.Parameters.Add("@shooId", MySqlDbType.Int32).Value = user.schoolId;
-            comand.ExecuteNonQuery();
-            connection.close();
-        }
-        public void schoolDelite() 
-        {
-            DBConnection connection = new DBConnection();
-            string query = "DELITE FROM school WHERE id_shool=@ischoolId";
-            connection.open();
-            MySqlCommand comand = new MySqlCommand(query, connection.conn);
-            comand.Parameters.Add("@shooId", MySqlDbType.Int32).Value = user.schoolId;
-            comand.ExecuteNonQuery();
-            connection.close();
-        }
-
-
         public School registerSchool(School school) {
             string query = "INSERT INTO SCHOOL(name, type) VALUES(@name, @type);";
             this.connection.open();
@@ -72,7 +48,50 @@ namespace WebAPI.Queries
             connection.close();
 
             Finder.school = school;
+            setAdminSchool(cmd.LastInsertedId);
             return school;
         }
+
+        public void setAdminSchool(long idSchool)
+        {
+            this.user = Signer.user;
+            string query = "UPDATE SCHOOL_ADMINISTRATOR set id_school=@id WHERE id_school_administrator=@admin_id;";
+            this.connection.open();
+
+            MySqlCommand cmd = new MySqlCommand(query, connection.conn);
+            cmd.Parameters.Add("@id", MySqlDbType.String).Value = idSchool;
+            cmd.Parameters.Add("@admin_id", MySqlDbType.String).Value = user.id;
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+            reader.Close();
+            connection.close();
+
+            Signer.user.schoolId = (int)(idSchool);
+        }
+
+        public void schoolEdit(string name, string type)
+        {
+            this.user = Signer.user;
+            DBConnection connection = new DBConnection();
+            string query = "UPDATE school SET name=@name , type=@type WHERE id_school=@schoolId";
+            connection.open();
+            MySqlCommand comand = new MySqlCommand(query, connection.conn);
+            comand.Parameters.Add("@name", MySqlDbType.VarChar, 45).Value = name;
+            comand.Parameters.Add("@type", MySqlDbType.VarChar, 3).Value = type;
+            comand.Parameters.Add("@schoolId", MySqlDbType.Int32).Value = user.schoolId;
+            comand.ExecuteNonQuery();
+            connection.close();
+        }
+        public void schoolDelite()
+        {
+            DBConnection connection = new DBConnection();
+            string query = "DELITE FROM school WHERE id_shool=@ischoolId";
+            connection.open();
+            MySqlCommand comand = new MySqlCommand(query, connection.conn);
+            comand.Parameters.Add("@shooId", MySqlDbType.Int32).Value = user.schoolId;
+            comand.ExecuteNonQuery();
+            connection.close();
+        }
+
     }
 }

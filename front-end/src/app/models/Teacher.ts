@@ -3,5 +3,5 @@ export interface Teacher {
   fullName: string;
   email: string;
   password: string;
-  idSchool: number;
+  idSchool?: number;
 }

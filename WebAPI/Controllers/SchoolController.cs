@@ -38,8 +38,8 @@ namespace WebAPI.Controllers
         [HttpPut("")]
         public IActionResult editSchool(School school)
         {
-            Console.WriteLine("Edit School name: " + school.Name);
-            Console.WriteLine("Edit School type: " + school.Type);
+            SchoolQuery schoolQuery = new SchoolQuery();
+            schoolQuery.schoolEdit(school.Name, school.Type);
 
             return Created("~api/school", Finder.school);
         }

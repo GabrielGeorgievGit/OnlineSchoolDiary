@@ -43,15 +43,15 @@ export class EditComponent implements OnInit {
     this.schoolService.getSchoolProfile().subscribe({
       next: (response) => {
         this.school = { ...response };
-        console.log(this.school);
+        this.formGroup.controls['name'].setValue(this.school.name);
+        this.formGroup.controls['types'].setValue(this.school.type);
       },
       error: (response) => {
         console.log(response);
       },
     });
     console.log(this.school.name);
-    this.formGroup.controls['name'].setValue(this.school.name);
-    this.formGroup.controls['types'].setValue(this.school.type);
+   
   }
 
   handleSubmit() {
@@ -74,7 +74,9 @@ export class EditComponent implements OnInit {
     this.router.navigate(['school-admin/school/classes']);
   }
 
-  editTeachers() {}
+  editTeachers() {
+    this.router.navigate(['school-admin/school/teachers/new']);
+  }
 
   editStudents() {}
 }
