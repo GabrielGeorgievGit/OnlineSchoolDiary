@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Grade } from 'src/app/models/Grade';
 import { Student } from 'src/app/models/Student';
 import { GradeService } from 'src/app/Services/grade.service';
+import { StudentService } from 'src/app/Services/student.service';
 
 @Component({
   selector: 'app-edit-grade',
@@ -25,7 +26,8 @@ export class EditGradeComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private readonly gradeService: GradeService
+    private readonly gradeService: GradeService,
+    private readonly studentService: StudentService
   ) {
     this.grade = EditGradeComponent.grade;
     this.students = [];
@@ -52,12 +54,24 @@ export class EditGradeComponent implements OnInit {
 
   editStudent(student: string) {
     console.log(student);
-    this.router.navigate(['school-admin/school/classes']);
+    this.router.navigate(['school-admin/school/grade/student']);
   }
 
-  addStudent(student: string) {
-    console.log(this.dataSource);
-    this.students.push({ fullName: student, idGrade: this.grade.id });
+  addStudent(name: string) {
+    let student = {} as Student;
+    student.fullName = name;
+    student.idGrade = this.grade.id;
+    this.studentService.registerStudentProfile(student).subscribe({
+      next: (response) => {
+        alert('Successfully added student');
+      },
+      error: (response) => {
+        console.log(response);
+        alert('Student not added');
+      },
+    });
+    // console.log(this.dataSource);
+    // this.students.push({ fullName: student, idGrade: this.grade.id });
 
     window.location.reload();
   }

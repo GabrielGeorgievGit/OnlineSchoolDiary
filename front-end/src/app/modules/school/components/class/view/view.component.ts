@@ -55,10 +55,10 @@ export class ViewComponent implements OnInit {
       .subscribe({
         next: (response) => {
           EditGradeComponent.grade = response;
-          this.router.navigate(['school-admin/school/grade']);
         },
         error: (response) => console.log(response),
       });
+    this.router.navigate(['school-admin/school/grade']);
   }
 
   addTerm() {}

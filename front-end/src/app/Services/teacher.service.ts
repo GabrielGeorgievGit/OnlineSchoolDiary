@@ -14,9 +14,9 @@ export class TeacherService {
     return this.http.get<Teacher[]>(`/api/school/grade/teacher`);
   }
 
-  // getSchoolProfile(): Observable<School> {
-  //   return this.http.get<School>(`/api/school/name`);
-  // }
+  registerTeacher(teacher: Teacher): Observable<Teacher> {
+    return this.http.post<Teacher>(`/api/school/teacher`, teacher);
+  }
 
   editTeacher(teacher: Teacher): Observable<Teacher> {
     return this.http.put<Teacher>(`/api/school/grade/teacher`, teacher);

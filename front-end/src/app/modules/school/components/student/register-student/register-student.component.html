@@ -1,1 +1,28 @@
-<p>register-student works!</p>
+<mat-card class="form-container">
+  <form [formGroup]="formGroup" (submit)="handleSubmit()">
+    <mat-form-field class="schoolDetails" appearance="fill">
+      <mat-label>Full Name</mat-label>
+      <input formControlName="fullName" matInput />
+      <mat-error *ngIf="formGroup.get('fullName')?.errors?.['required']"
+        >Teacher name is required.</mat-error
+      >
+      <mat-error *ngIf="formGroup.get('fullName')?.errors?.['minlength']"
+        >Min length is 3 symbols.</mat-error
+      >
+      <mat-error *ngIf="formGroup.get('fullName')?.errors?.['maxlength']"
+        >Max length is 60 symbols.</mat-error
+      >
+    </mat-form-field>
+
+    <div class="buttonsContainer">
+      <button
+        mat-raised-button
+        id="submit"
+        type="submit"
+        [disabled]="formGroup.invalid"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</mat-card>

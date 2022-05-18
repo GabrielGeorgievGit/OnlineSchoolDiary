@@ -6,6 +6,7 @@ import { SchoolService } from 'src/app/Services/school.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Size } from 'src/app/shared/const/Size';
 import { LoginComponent } from '../../../../../login/login.component';
+import { TeacherService } from 'src/app/Services/teacher.service';
 
 @Component({
   selector: 'app-teachers',
@@ -16,7 +17,6 @@ export class TeachersComponent implements OnInit {
   hidePassword = true;
   formGroup: FormGroup;
   dataSource = new MatTableDataSource<Teacher>();
-  teachers: Teacher[];
 
   @Input() set teacher(value: Teacher) {
     if (value) {
@@ -26,10 +26,9 @@ export class TeachersComponent implements OnInit {
   @Output() profileSubmit: EventEmitter<Teacher> = new EventEmitter();
   constructor(
     private readonly formBuild: FormBuilder,
-    private readonly schoolService: SchoolService,
+    private readonly teacherService: TeacherService,
     private readonly router: Router
   ) {
-    this.teachers = [];
     this.formGroup = formBuild.group({
       fullName: this.formBuild.control('', [
         Validators.required,
@@ -52,14 +51,6 @@ export class TeachersComponent implements OnInit {
         Validators.maxLength(Size.PASSWORD_MAX_LENGTH),
       ]),
     });
-
-    this.teachers.push({
-      id: 0,
-      fullName: 'Ivan',
-      email: 'ivan@ivan.iv',
-      password: 'vanko123',
-      idSchool: 1,
-    });
   }
 
   ngOnInit(): void {}
@@ -67,7 +58,7 @@ export class TeachersComponent implements OnInit {
   handleSubmit() {
     this.profileSubmit.emit(this.formGroup.value);
     console.log(this.formGroup.value);
-    this.schoolService
+    this.teacherService
       .registerTeacher({
         id: 2, //without id
         email: this.formGroup.get('email')?.value,
