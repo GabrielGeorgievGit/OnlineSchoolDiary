@@ -27,11 +27,11 @@ CREATE TABLE `school_administrator` (
   `full_name` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-  `id_school` int unsigned NOT NULL,
+  `id_school` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id_school_administrator`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `idSchool_idx` (`id_school`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `school_administrator` (
 
 LOCK TABLES `school_administrator` WRITE;
 /*!40000 ALTER TABLE `school_administrator` DISABLE KEYS */;
+INSERT INTO `school_administrator` VALUES (1,'ivan','ivan@abv.bg','1234567',1),(2,'vanko','vanko@abv.bg','1234567',NULL);
 /*!40000 ALTER TABLE `school_administrator` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-13 15:25:20
+-- Dump completed on 2022-05-20 18:31:57

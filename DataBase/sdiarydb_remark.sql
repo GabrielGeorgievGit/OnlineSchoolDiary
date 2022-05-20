@@ -26,6 +26,7 @@ CREATE TABLE `remark` (
   `id_remark` int unsigned NOT NULL AUTO_INCREMENT,
   `remark` varchar(500) NOT NULL,
   `id_student` int unsigned NOT NULL,
+  `date` date NOT NULL,
   PRIMARY KEY (`id_remark`),
   KEY `idStudent_idx` (`id_student`),
   CONSTRAINT `idStudentRem` FOREIGN KEY (`id_student`) REFERENCES `student` (`id_student`)
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-13 15:25:19
+-- Dump completed on 2022-05-20 18:31:56

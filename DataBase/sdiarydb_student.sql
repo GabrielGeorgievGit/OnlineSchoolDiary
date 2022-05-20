@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `student`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `student` (
   `id_student` int unsigned NOT NULL AUTO_INCREMENT,
-  `full_name` varchar(45) NOT NULL,
+  `full_name` varchar(60) NOT NULL,
   `id_grade` int unsigned NOT NULL,
   PRIMARY KEY (`id_student`),
   KEY `idGrade_idx` (`id_grade`),
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-13 15:25:20
+-- Dump completed on 2022-05-20 18:31:56
