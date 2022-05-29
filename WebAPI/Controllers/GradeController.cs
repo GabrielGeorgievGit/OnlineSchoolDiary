@@ -10,16 +10,18 @@ namespace WebAPI.Controllers {
         public GradeController() {}
 
         [HttpGet("")]
-        public String[] getStudents() {
-            return null;//Signer.grade;
+        public Grade getSchoolGrade() {
+            return Finder.grade;
         }
 
         [HttpPost("")]
-        public IActionResult sendGrade(ClassGrade grade) {
+        public IActionResult sendGrade(ClassGrade classGrade) {
+            Grade grade;
+            gradeQuery query = new gradeQuery();
+            grade = query.findGrade(classGrade);
+            Console.WriteLine(grade.classNumber + grade.grade);
 
-
-
-            return Created("~api/login", Finder.grade);
+            return Created("~api/school/grade", grade);
         }
     }
 }

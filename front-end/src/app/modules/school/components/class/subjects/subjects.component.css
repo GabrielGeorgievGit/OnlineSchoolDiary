@@ -1,7 +1,7 @@
 .demo-table {
     width: 100%;
   }
-  
+
   .mat-row .mat-cell {
     border-bottom: 1px solid transparent;
     border-top: 1px solid transparent;
@@ -11,7 +11,7 @@
   table {
     margin-bottom: 1rem;
   }
-  
+
   th {
     font-size: xx-large;
     font-weight: bold;
@@ -24,7 +24,7 @@
   .mat-row:hover .mat-cell {
     border-color: currentColor;
   }
-  
+
   form {
     display: flex;
     flex-direction: column;
@@ -48,7 +48,7 @@ button {
 
 .form-container {
   margin: 5rem auto;
-  padding: 3.4rem 0;
+  padding: 8% 0;
   box-shadow: 0px 3px 7px 5px rgba(0,0,0,0.4);
   width: 70%;
 }
@@ -61,6 +61,7 @@ button {
 
 .header {
     text-align: center;
+    margin-top: 4rem;
     margin-bottom: 1rem;
 }
 
@@ -69,5 +70,5 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 30vh; 
+  height: 30vh;
 }

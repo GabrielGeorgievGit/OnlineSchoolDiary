@@ -29,7 +29,7 @@ namespace WebAPI.Queries {
                 reader.Close();
                 connection.close();
                 school = findSchoolById(idSchool);
-                
+                Finder.school = school;
                 return school;
             }
 
@@ -42,7 +42,7 @@ namespace WebAPI.Queries {
                 reader.Close();
                 connection.close();
                 school = findSchoolById(idSchool);
-
+                Finder.school = school;
                 return school;
             }
             return null;
@@ -65,6 +65,7 @@ namespace WebAPI.Queries {
                 reader.Close();
                 connection.close();
             }
+            Finder.school = school;
             return school;
         }
 

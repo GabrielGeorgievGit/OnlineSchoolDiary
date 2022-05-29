@@ -49,7 +49,51 @@ namespace WebAPI.Queries
 
             Finder.school = school;
             setAdminSchool(cmd.LastInsertedId);
+            fillSchoolClasses(findSchoolId(school.Name));
+
             return school;
+        }
+
+        public static int findSchoolId(String name) {
+            DBConnection connection = new DBConnection();
+            MySqlCommand command;
+            connection.open();
+            string query = "SELECT ID_SCHOOL FROM SCHOOL WHERE NAME=@name";
+            MySqlDataReader reader;
+            command = new MySqlCommand(query, connection.conn);
+            command.Parameters.Add("@name", MySqlDbType.VarChar, 45).Value = name;
+
+            reader = command.ExecuteReader();
+            int id = -50;
+            if (reader.Read()) {
+                id = reader.GetInt32("ID_SCHOOL");
+            }
+            reader.Close();
+            connection.close();
+            return id;
+        }
+
+        public void fillSchoolClasses(int id) {
+            int[] classes = new int[12];
+            for(int i = 1; i < 13; ++i) {
+                classes[i-1] = i;
+            }
+            DBConnection connection = new DBConnection();
+            MySqlCommand command;
+            connection.open();
+            string query = "INSERT INTO GRADE(CLASS, GRADE, ID_SCHOOL, ID_CLASS_TEACHER) VALUES(@class, @grade, @idSchool, NULL)";
+            string[] grades = new string[5] { "a", "b", "c", "d", "e" };
+            for(int i = 1; i < 13; ++i) {
+                for (int j = 0; j < 5; ++j) {
+                    command = new MySqlCommand(query, connection.conn);
+                    command.Parameters.Add("@class", MySqlDbType.Int32).Value = i;
+                    command.Parameters.Add("@grade", MySqlDbType.String).Value = grades[j];
+                    command.Parameters.Add("@idSchool", MySqlDbType.Int32).Value = id;
+                    command.ExecuteReader().Close();
+                }
+            }
+
+            connection.close();
         }
 
         public void setAdminSchool(long idSchool)

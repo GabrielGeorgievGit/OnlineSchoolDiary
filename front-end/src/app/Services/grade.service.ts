@@ -19,6 +19,10 @@ export class GradeService {
     return this.http.post<Grade>(`/api/school/grade`, clazz);
   }
 
+  getCurrentGrade(): Observable<Grade> {
+    return this.http.get<Grade>(`/api/school/grade`);
+  }
+
   getSchoolStudents(): Observable<string[]> {
     return this.http.get<string[]>(`/api/school/grade/students`);
   }

@@ -27,12 +27,12 @@ export class ViewComponent implements OnInit {
   ) {
     this.classes = [];
 
-    this.schoolClass.getSchoolClasses().subscribe({
-      next: (response) => {
-        this.classes = response;
-      },
-      error: (response) => {},
-    });
+    // this.schoolClass.getSchoolClasses().subscribe({
+    //   next: (response) => {
+    //     this.classes = response;
+    //   },
+    //   error: (response) => {},
+    // });
 
     for (let i = 1; i < 13; ++i)
       this.classes.push({

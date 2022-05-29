@@ -18,18 +18,23 @@ export class EditGradeComponent implements OnInit {
     schoolName: 'School',
     teacherName: 'Teacher',
   };
-  grade: Grade;
+  grade: Grade = EditGradeComponent.grade;
   displayedColumns: string[] = ['fullName'];
   students: Student[];
   dataSource: Student[];
   newStudent: string;
-
+  static reload: boolean = false;
   constructor(
     private readonly router: Router,
     private readonly gradeService: GradeService,
     private readonly studentService: StudentService
   ) {
-    this.grade = EditGradeComponent.grade;
+    gradeService.getCurrentGrade().subscribe({
+      next: (response) => {
+        this.grade = response;
+      },
+    });
+    console.log(this.grade.teacherName);
     this.students = [];
     this.students.push({
       fullName: 'Ivan Hristov Blagoev',

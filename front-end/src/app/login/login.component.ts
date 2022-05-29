@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
                   ) {
                     this.router.navigate(['/school-admin']);
                   } else this.router.navigate(['/school-admin/school/edit']);
+                } else if (LoginComponent.loggedUser.role === 'teacher') {
                 }
               }
             },
