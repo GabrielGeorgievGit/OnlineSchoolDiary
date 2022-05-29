@@ -49,6 +49,10 @@ export class ViewComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  toEditSchool() {
+    this.router.navigate(['school-admin/school/edit']);
+  }
+
   editTerm(clazz: string, term: string) {
     this.gradeService
       .getSchoolGrade({ name: Number.parseInt(clazz), grade: term })

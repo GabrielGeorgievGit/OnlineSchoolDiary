@@ -1,8 +1,12 @@
 <mat-card class="form-container">
+  <div class="header">
+    <h2>All Classes</h2>
+  </div>
   <div class="content">
-    <div class="header">
-      <h2>All Classes</h2>
-    </div>
+    <ng-container class="buttonsContainer">
+      <button mat-raised-button (click)="toEditSchool()">Edit School</button>
+    </ng-container>
+
     <table
       mat-table
       [dataSource]="dataSource"

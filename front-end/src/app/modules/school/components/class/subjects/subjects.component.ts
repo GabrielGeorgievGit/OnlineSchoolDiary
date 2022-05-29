@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Grade } from 'src/app/models/Grade';
 import { Subject } from 'src/app/models/Subject';
 import { Teacher } from 'src/app/models/Teacher';
+import { GradeService } from 'src/app/Services/grade.service';
+import { TeacherService } from 'src/app/Services/teacher.service';
 
 @Component({
   selector: 'app-subjects',
@@ -9,23 +12,49 @@ import { Teacher } from 'src/app/models/Teacher';
   styleUrls: ['./subjects.component.css'],
 })
 export class SubjectsComponent implements OnInit {
-  idGrade: number;
   displayedColumns: string[] = ['name', 'teacher', 'remove'];
   subjects: Subject[];
   dataSource: Subject[];
   newSubject: string;
   teacher = '';
-  teachers: string[];
-
-  constructor(private readonly router: Router) {
-    this.idGrade = 1;
+  teachers: Teacher[];
+  grade: Grade = {
+    id: 1,
+    classNumber: 1,
+    grade: 'a',
+    schoolName: 'School',
+    teacherName: 'Teacher',
+  };
+  constructor(
+    private readonly router: Router,
+    private readonly gradeService: GradeService,
+    private readonly teacherService: TeacherService
+  ) {
+    gradeService.getCurrentGrade().subscribe({
+      next: (response) => {
+        this.grade = { ...response };
+        if (this.grade.teacherName === '') {
+          this.grade.teacherName = 'None';
+        }
+      },
+    });
     this.subjects = [];
 
     this.teachers = [];
-    this.teachers.push('Ivan Ivanov');
+    this.teacherService.getTeachers().subscribe({
+      next: (response) => {
+        response.forEach((t) => this.teachers.push(t));
+      },
+    });
 
-    this.subjects.push({ name: 'Math', teacherName: this.teachers[0] });
-    this.subjects.push({ name: 'English', teacherName: this.teachers[0] });
+    this.subjects.push({
+      name: 'Math',
+      teacherName: 'name', //this.teachers[0].fullName,
+    });
+    this.subjects.push({
+      name: 'English',
+      teacherName: 'name', //this.teachers[0].fullName,
+    });
     this.dataSource = this.subjects;
 
     this.newSubject = '';

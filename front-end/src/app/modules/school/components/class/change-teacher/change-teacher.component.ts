@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Grade } from 'src/app/models/Grade';
 import { Teacher } from 'src/app/models/Teacher';
+import { GradeService } from 'src/app/Services/grade.service';
 import { TeacherService } from 'src/app/Services/teacher.service';
 import { EditGradeComponent } from '../edit-grade/edit-grade.component';
 
@@ -13,7 +14,11 @@ export class ChangeTeacherComponent implements OnInit {
   grade: Grade;
   teacher: string;
   teachers: Teacher[];
-  constructor(private readonly teacherService: TeacherService) {
+  idGrade: number = 0;
+  constructor(
+    private readonly teacherService: TeacherService,
+    private readonly gradeService: GradeService
+  ) {
     this.grade = {
       id: 1,
       classNumber: 1,
@@ -21,9 +26,19 @@ export class ChangeTeacherComponent implements OnInit {
       schoolName: 'School',
       teacherName: 'Teacher',
     };
+    gradeService.getCurrentGrade().subscribe({
+      next: (response) => {
+        this.grade = { ...response };
+        if (this.grade.teacherName === '') {
+          this.grade.teacherName = 'None';
+        }
+        this.idGrade = this.grade.id;
+      },
+    });
+
     this.teacher = '';
     this.teachers = [];
-    this.teacherService.getTeachers().subscribe({
+    this.teacherService.getNotGradeTeachers().subscribe({
       next: (response) => {
         response.forEach((t) => this.teachers.push(t));
       },

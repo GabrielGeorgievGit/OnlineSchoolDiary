@@ -42,8 +42,8 @@ button {
 .buttonsContainer {
   display: flex;
   width: 450px;
-  justify-content: right;
-  align-items: space-around;
+  justify-content: space-around;
+  align-items: center;
   margin-bottom: 1rem;
 }
 

@@ -16,16 +16,6 @@ export class ShowTeachersComponent implements OnInit {
     private readonly teacherService: TeacherService
   ) {
     this.teachers = [];
-
-    // for (let i = 0; i < 1; ++i) {
-    //   this.teachers.push({
-    //     id: 0,
-    //     fullName: 'Vanko',
-    //     email: 'ivan@ivan.iv',
-    //     password: '',
-    //     idSchool: 1,
-    //   });
-    // }
   }
 
   ngOnInit(): void {
@@ -45,5 +35,9 @@ export class ShowTeachersComponent implements OnInit {
     Store.teacher = this.teachers[i];
 
     this.router.navigate([`school-admin/school/teachers/edit`]);
+  }
+
+  toEditSchool() {
+    this.router.navigate(['school-admin/school/edit']);
   }
 }

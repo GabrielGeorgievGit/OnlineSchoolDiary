@@ -1,6 +1,11 @@
 <mat-card class="form-container">
   <div class="header">
     <h2>All Teachers</h2>
+    <div class="content">
+      <ng-container class="buttonsContainer">
+        <button mat-raised-button (click)="toEditSchool()">Edit School</button>
+      </ng-container>
+    </div>
     <button
       mat-raised-button
       (click)="newTeacher()"

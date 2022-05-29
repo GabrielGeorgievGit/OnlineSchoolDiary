@@ -52,6 +52,11 @@ namespace WebAPI.Controllers
             return SchoolQuery.findTeachers(Finder.school.id);
         }
 
+        [HttpGet("teachers/not-grade")]
+        public Teacher[] getSchoolNotGradeTeachers() {
+            return SchoolQuery.findNotGradeTeachers(Finder.school.id);
+        }
+
         [HttpPost("teacher")]
         public IActionResult registerTeacher(Teacher teacher) {
             teacher.idSchool = Finder.school.id;

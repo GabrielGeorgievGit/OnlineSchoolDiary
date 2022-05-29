@@ -60,7 +60,8 @@ namespace WebAPI.Queries
             connection.close();
         }
 
-        public string findClassTeacher(int idClassTeacher) {
+        public string findClassTeacher(int idClassTeacher)
+        {
             DBConnection connection = new DBConnection();
             MySqlCommand command;
             connection.open();
@@ -71,7 +72,8 @@ namespace WebAPI.Queries
 
             reader = command.ExecuteReader();
             string name = "";
-            if (reader.Read()) {
+            if (reader.Read())
+            {
                 name = reader.GetString("FULL_NAME");
             }
             reader.Close();
@@ -79,7 +81,8 @@ namespace WebAPI.Queries
             return name;
         }
 
-        public Grade findGrade(ClassGrade classGrade) {
+        public Grade findGrade(ClassGrade classGrade)
+        {
             DBConnection connection = new DBConnection();
             MySqlCommand command;
             connection.open();
@@ -91,16 +94,18 @@ namespace WebAPI.Queries
             command.Parameters.Add("@grade", MySqlDbType.String).Value = classGrade.grade;
 
             reader = command.ExecuteReader();
-            
+
             Grade grade = null;
-            if (reader.Read()) {
+            if (reader.Read())
+            {
                 grade = new Grade();
                 grade.id = reader.GetInt32("ID_GRADE");
                 grade.classNumber = reader.GetInt32("CLASS").ToString();
                 grade.grade = reader.GetString("GRADE");
                 grade.schoolName = Finder.school.Name;
-                
-                if(reader.IsDBNull(4)) {
+
+                if (reader.IsDBNull(4))
+                {
                     grade.teacherName = "";
                 }
                 else grade.teacherName = findClassTeacher(reader.GetInt32("ID_CLASS_TEACHER"));
@@ -112,7 +117,8 @@ namespace WebAPI.Queries
             return grade;
         }
 
-        public static Student[] findStudents(int idGrade) {
+        public static Student[] findStudents(int idGrade)
+        {
             DBConnection connection = new DBConnection();
             MySqlCommand command;
             connection.open();
@@ -122,19 +128,18 @@ namespace WebAPI.Queries
             command.Parameters.Add("@idGrade", MySqlDbType.Int32).Value = idGrade;
 
             reader = command.ExecuteReader();
-            //DataTable dt = new DataTable();
-            //dt.Load(reader);
-            int count = 0;
             List<Student> students = new List<Student>();
-            while (reader.Read()) { 
-            students.Add(new Student(reader.GetInt32("ID_STUDENT"), reader.GetString("FULL_NAME"), idGrade));
-            } 
+            while (reader.Read())
+            {
+                students.Add(new Student(reader.GetInt32("ID_STUDENT"), reader.GetString("FULL_NAME"), idGrade));
+            }
             reader.Close();
             connection.close();
             return students.ToArray();
         }
 
-        public static void addStudent(Student student) {
+        public static void addStudent(Student student)
+        {
             DBConnection connection = new DBConnection();
             MySqlCommand command;
             connection.open();
@@ -149,7 +154,8 @@ namespace WebAPI.Queries
             connection.close();
         }
 
-        public static void changeTeacher(int idGrade, Teacher teacher) {
+        public static void changeTeacher(int idGrade, Teacher teacher)
+        {
             DBConnection connection = new DBConnection();
             string query = "UPDATE GRADE SET ID_CLASS_TEACHER=@idTeacher WHERE id_grade=@idGrade";
             connection.open();

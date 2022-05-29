@@ -1,8 +1,8 @@
 <mat-card class="form-container">
   <div class="content">
     <div class="header">
-      <h1>Subjects in grade 3a</h1>
-      <h2>Class Teacher: Ivan</h2>
+      <h1>Subjects in grade {{ grade.classNumber + grade.grade }}</h1>
+      <h2>Class Teacher: {{ grade.teacherName }}</h2>
       <ng-container class="buttonsContainer">
         <button mat-raised-button (click)="editClass()">Edit Class</button>
       </ng-container>
@@ -48,8 +48,8 @@
       <mat-form-field appearance="fill" class="schoolDetails">
         <mat-label>Select Teacher</mat-label>
         <mat-select [(value)]="teacher" #newTeacher name="newTeacher">
-          <mat-option *ngFor="let t of teachers" [value]="t">{{
-            t
+          <mat-option *ngFor="let t of teachers" [value]="t.id">{{
+            t.fullName
           }}</mat-option>
         </mat-select>
       </mat-form-field>

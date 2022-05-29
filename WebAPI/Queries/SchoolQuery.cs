@@ -160,6 +160,41 @@ namespace WebAPI.Queries
             return teachers.ToArray();
         }
 
+        public static Teacher[] findNotGradeTeachers(int idSchool) {
+            Console.WriteLine("finding Teachers");
+            DBConnection connection = new DBConnection();
+            MySqlCommand command;
+            connection.open();
+            string query = "SELECT * FROM TEACHER WHERE ID_SCHOOL=@id";
+            MySqlDataReader reader;
+            command = new MySqlCommand(query, connection.conn);
+            command.Parameters.Add("@id", MySqlDbType.Int32).Value = idSchool;
+
+            reader = command.ExecuteReader();
+
+            List<Teacher> teachers = new List<Teacher>();
+            while (reader.Read()) {
+                int idTeacher = reader.GetInt32("ID_TEACHER");
+                if(!isGradeTeacher(idTeacher))
+                    teachers.Add(new Teacher(idTeacher, reader.GetString("FULL_NAME"), reader.GetString("EMAIL"), reader.GetString("PASSWORD"), idSchool));
+            }
+            reader.Close();
+            connection.close();
+            return teachers.ToArray();
+        }
+
+        private static bool isGradeTeacher(int idTeacher) {
+            DBConnection connection = new DBConnection();
+            MySqlCommand command;
+            connection.open();
+            string query = "SELECT EXISTS(SELECT * from GRADE WHERE ID_CLASS_TEACHER=@id)";
+            command = new MySqlCommand(query, connection.conn);
+            command.Parameters.Add("@id", MySqlDbType.Int32).Value = idTeacher;
+            object obj = command.ExecuteScalar();
+            
+            return Convert.ToInt32(obj) > 0;
+        }
+
         public static void addTeacher(Teacher teacher) {
             DBConnection connection = new DBConnection();
             MySqlCommand command;
