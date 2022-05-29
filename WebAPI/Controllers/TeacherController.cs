@@ -3,7 +3,7 @@ using WebAPI.Models;
 using WebAPI.Queries;
 namespace WebAPI.Controllers
 {
-    [Route("api/school/teacher")]
+    [Route("api/school/teachera")]
     [ApiController]
     public class TeacherController : Controller
     {

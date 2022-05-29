@@ -17,7 +17,7 @@ namespace WebAPI.Queries {
             DBConnection connection = new DBConnection();
             connection.open();
             School school = null;
-            int? idSchool = null;
+            int idSchool = -50;
 
             string query = "SELECT * FROM SCHOOL_ADMINISTRATOR WHERE id_school_administrator=@id";
             MySqlCommand command = new MySqlCommand(query, connection.conn);
@@ -48,7 +48,7 @@ namespace WebAPI.Queries {
             return null;
         }
 
-        public School findSchoolById(int? schoolId) {
+        public School findSchoolById(int schoolId) {
             if (schoolId == null) return null;
             School school = null;
 
@@ -61,7 +61,7 @@ namespace WebAPI.Queries {
             MySqlDataReader reader = command.ExecuteReader();
 
             if (reader.Read()) {
-                school = new School(reader.GetString("name"), reader.GetString("type"));
+                school = new School(schoolId, reader.GetString("name"), reader.GetString("type"));
                 reader.Close();
                 connection.close();
             }

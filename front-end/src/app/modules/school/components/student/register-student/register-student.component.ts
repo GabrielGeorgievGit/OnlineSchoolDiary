@@ -42,7 +42,7 @@ export class RegisterStudentComponent implements OnInit {
 
   handleSubmit() {
     let student = {} as Student;
-    student.fullName = this.formGroup.get('fullName')?.value;
+    student.name = this.formGroup.get('fullName')?.value;
     student.idGrade = this.idGrade;
     this.studentService.registerStudentProfile(student).subscribe({
       next: (response) => {

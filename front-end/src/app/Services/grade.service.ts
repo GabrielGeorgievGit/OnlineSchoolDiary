@@ -23,8 +23,8 @@ export class GradeService {
     return this.http.get<Grade>(`/api/school/grade`);
   }
 
-  getSchoolStudents(): Observable<string[]> {
-    return this.http.get<string[]>(`/api/school/grade/students`);
+  getSchoolStudents(): Observable<Student[]> {
+    return this.http.get<Student[]>(`/api/school/grade/students`);
   }
 
   // editSchoolProfile(school: School): Observable<School> {

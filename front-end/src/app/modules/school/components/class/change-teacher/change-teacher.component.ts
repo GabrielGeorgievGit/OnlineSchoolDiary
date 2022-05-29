@@ -14,25 +14,42 @@ export class ChangeTeacherComponent implements OnInit {
   teacher: string;
   teachers: Teacher[];
   constructor(private readonly teacherService: TeacherService) {
-    this.grade = EditGradeComponent.grade;
-    this.teacher = 'name';
-    this.teachers = [];
-    this.teachers.push({
-      email: 'email',
-      fullName: 'name',
+    this.grade = {
       id: 1,
-      idSchool: 1,
-      password: 'password',
+      classNumber: 1,
+      grade: 'a',
+      schoolName: 'School',
+      teacherName: 'Teacher',
+    };
+    this.teacher = '';
+    this.teachers = [];
+    this.teacherService.getTeachers().subscribe({
+      next: (response) => {
+        response.forEach((t) => this.teachers.push(t));
+      },
     });
+    // this.teachers.push({
+    //   email: 'email',
+    //   fullName: 'name',
+    //   id: 1,
+    //   idSchool: 1,
+    //   password: 'password',
+    // });
   }
 
   ngOnInit(): void {}
 
   changeTeacher() {
+    if (this.teacher === '') {
+      alert('Select a teacher!');
+      return;
+    }
+
     let teacher = {} as Teacher;
     this.teachers.forEach((t) => {
       if (t.fullName === this.teacher) teacher = t;
     });
+
     this.teacherService.editTeacher(teacher).subscribe({
       next: (response) => {
         alert('Class teacher is changed');

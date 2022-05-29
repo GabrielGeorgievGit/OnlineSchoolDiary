@@ -29,30 +29,38 @@ export class TeachersComponent implements OnInit {
     private readonly teacherService: TeacherService,
     private readonly router: Router
   ) {
-    this.formGroup = formBuild.group({
-      fullName: this.formBuild.control('', [
-        Validators.required,
-        Validators.minLength(Size.FULLNAME_MIN_LENGTH),
-        Validators.maxLength(Size.FULLNAME_MAX_LENGTH),
-      ]),
-      email: this.formBuild.control('', [
-        Validators.required,
-        Validators.minLength(Size.EMAIL_MIN_LENGTH),
-        Validators.maxLength(Size.EMAIL_MAX_LENGTH),
-      ]),
-      password: this.formBuild.control('', [
-        Validators.required,
-        Validators.minLength(Size.PASSWORD_MIN_LENGTH),
-        Validators.maxLength(Size.PASSWORD_MAX_LENGTH),
-      ]),
-      repeatPassword: this.formBuild.control('', [
-        Validators.required,
-        Validators.minLength(Size.PASSWORD_MIN_LENGTH),
-        Validators.maxLength(Size.PASSWORD_MAX_LENGTH),
-      ]),
-    });
+    this.formGroup = formBuild.group(
+      {
+        fullName: this.formBuild.control('', [
+          Validators.required,
+          Validators.minLength(Size.FULLNAME_MIN_LENGTH),
+          Validators.maxLength(Size.FULLNAME_MAX_LENGTH),
+        ]),
+        email: this.formBuild.control('', [
+          Validators.required,
+          Validators.minLength(Size.EMAIL_MIN_LENGTH),
+          Validators.maxLength(Size.EMAIL_MAX_LENGTH),
+        ]),
+        password: this.formBuild.control('', [
+          Validators.required,
+          Validators.minLength(Size.PASSWORD_MIN_LENGTH),
+          Validators.maxLength(Size.PASSWORD_MAX_LENGTH),
+        ]),
+        repeatPassword: this.formBuild.control('', [
+          Validators.required,
+          Validators.minLength(Size.PASSWORD_MIN_LENGTH),
+          Validators.maxLength(Size.PASSWORD_MAX_LENGTH),
+        ]),
+      },
+      { validator: this.checkPasswords }
+    );
   }
+  checkPasswords(group: FormGroup) {
+    const pass = group.get('password')?.value;
+    const confirmPass = group.get('repeatPassword')?.value;
 
+    return pass === confirmPass ? null : { notSame: true };
+  }
   ngOnInit(): void {}
 
   handleSubmit() {
@@ -60,10 +68,10 @@ export class TeachersComponent implements OnInit {
     console.log(this.formGroup.value);
     this.teacherService
       .registerTeacher({
-        id: 2, //without id
+        id: -50, //without id
         email: this.formGroup.get('email')?.value,
         fullName: this.formGroup.get('fullName')?.value,
-        idSchool: LoginComponent.loggedUser?.schoolId,
+        idSchool: -50,
         password: this.formGroup.get('password')?.value,
       })
       .subscribe({
@@ -72,6 +80,4 @@ export class TeachersComponent implements OnInit {
         },
       });
   }
-
-  addTeacher() {}
 }

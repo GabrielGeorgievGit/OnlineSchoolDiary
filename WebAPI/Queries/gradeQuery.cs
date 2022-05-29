@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Data;
 using WebAPI.DB_connection;
 using WebAPI.Models;
 
@@ -66,7 +67,7 @@ namespace WebAPI.Queries
             string query = "SELECT FULL_NAME FROM TEACHER WHERE id_teacher=@id";
             MySqlDataReader reader;
             command = new MySqlCommand(query, connection.conn);
-            command.Parameters.Add("@id_teacher", MySqlDbType.Int32).Value = idClassTeacher;
+            command.Parameters.Add("@id", MySqlDbType.Int32).Value = idClassTeacher;
 
             reader = command.ExecuteReader();
             string name = "";
@@ -93,7 +94,6 @@ namespace WebAPI.Queries
             
             Grade grade = null;
             if (reader.Read()) {
-                Console.WriteLine("KUSTTT");
                 grade = new Grade();
                 grade.id = reader.GetInt32("ID_GRADE");
                 grade.classNumber = reader.GetInt32("CLASS").ToString();
@@ -110,6 +110,54 @@ namespace WebAPI.Queries
             Finder.grade = grade;
             Console.WriteLine(grade.schoolName);
             return grade;
+        }
+
+        public static Student[] findStudents(int idGrade) {
+            DBConnection connection = new DBConnection();
+            MySqlCommand command;
+            connection.open();
+            string query = "SELECT ID_STUDENT, FULL_NAME FROM STUDENT WHERE ID_GRADE=@idGrade";
+            MySqlDataReader reader;
+            command = new MySqlCommand(query, connection.conn);
+            command.Parameters.Add("@idGrade", MySqlDbType.Int32).Value = idGrade;
+
+            reader = command.ExecuteReader();
+            //DataTable dt = new DataTable();
+            //dt.Load(reader);
+            int count = 0;
+            List<Student> students = new List<Student>();
+            while (reader.Read()) { 
+            students.Add(new Student(reader.GetInt32("ID_STUDENT"), reader.GetString("FULL_NAME"), idGrade));
+            } 
+            reader.Close();
+            connection.close();
+            return students.ToArray();
+        }
+
+        public static void addStudent(Student student) {
+            DBConnection connection = new DBConnection();
+            MySqlCommand command;
+            connection.open();
+            string query = "INSERT INTO STUDENT(FULL_NAME, ID_GRADE) VALUES(@name, @idGrade)";
+            MySqlDataReader reader;
+            command = new MySqlCommand(query, connection.conn);
+            command.Parameters.Add("@name", MySqlDbType.VarChar, 45).Value = student.name;
+            command.Parameters.Add("@idGrade", MySqlDbType.Int32).Value = student.idGrade;
+
+            reader = command.ExecuteReader();
+            reader.Close();
+            connection.close();
+        }
+
+        public static void changeTeacher(int idGrade, Teacher teacher) {
+            DBConnection connection = new DBConnection();
+            string query = "UPDATE GRADE SET ID_CLASS_TEACHER=@idTeacher WHERE id_grade=@idGrade";
+            connection.open();
+            MySqlCommand comand = new MySqlCommand(query, connection.conn);
+            comand.Parameters.Add("@idTeacher", MySqlDbType.Int32).Value = teacher.id;
+            comand.Parameters.Add("@idGrade", MySqlDbType.Int32).Value = idGrade;
+            comand.ExecuteNonQuery();
+            connection.close();
         }
     }
 }

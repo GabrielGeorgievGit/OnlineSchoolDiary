@@ -54,7 +54,7 @@ export class ViewComponent implements OnInit {
       .getSchoolGrade({ name: Number.parseInt(clazz), grade: term })
       .subscribe({
         next: (response) => {
-          EditGradeComponent.grade = response;
+          //EditGradeComponent.grade = response;
         },
         error: (response) => console.log(response),
       });

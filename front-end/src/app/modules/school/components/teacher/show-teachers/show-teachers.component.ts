@@ -17,15 +17,15 @@ export class ShowTeachersComponent implements OnInit {
   ) {
     this.teachers = [];
 
-    for (let i = 0; i < 30; ++i) {
-      this.teachers.push({
-        id: 0,
-        fullName: 'Vanko',
-        email: 'ivan@ivan.iv',
-        password: '',
-        idSchool: 1,
-      });
-    }
+    // for (let i = 0; i < 1; ++i) {
+    //   this.teachers.push({
+    //     id: 0,
+    //     fullName: 'Vanko',
+    //     email: 'ivan@ivan.iv',
+    //     password: '',
+    //     idSchool: 1,
+    //   });
+    // }
   }
 
   ngOnInit(): void {

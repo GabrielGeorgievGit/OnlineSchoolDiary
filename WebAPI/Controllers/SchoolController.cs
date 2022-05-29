@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Models;
 using WebAPI.Queries;
 
 namespace WebAPI.Controllers
@@ -44,6 +45,20 @@ namespace WebAPI.Controllers
             schoolQuery.schoolEdit(school.Name, school.Type);
 
             return Created("~api/school", Finder.school);
+        }
+
+        [HttpGet("teachers")]
+        public Teacher[] getSchoolTeachers() {
+            return SchoolQuery.findTeachers(Finder.school.id);
+        }
+
+        [HttpPost("teacher")]
+        public IActionResult registerTeacher(Teacher teacher) {
+            teacher.idSchool = Finder.school.id;
+            SchoolQuery.addTeacher(teacher);
+
+            return Created("~api/school/teacher", teacher);
+            //else return BadRequest("Couldn't add to database this teacher");
         }
     }
 }

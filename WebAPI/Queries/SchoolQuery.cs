@@ -15,15 +15,17 @@ namespace WebAPI.Queries
         {
 
             string query = "SELECT * FROM school WHERE id_school=@ishoolId";
-            connection.open();
+            connection.open(); 
+            int schoolId = -50;
+            if (user.id != null) schoolId = user.id;
 
             MySqlCommand command = new MySqlCommand(query, connection.conn);
-            command.Parameters.Add("@shooId", MySqlDbType.Int32).Value = user.schoolId;
+            command.Parameters.Add("@shooId", MySqlDbType.Int32).Value = schoolId;
 
             MySqlDataReader reader = command.ExecuteReader();
-            if (reader.Read())
+            if (reader.Read() && user.schoolId != null)
             {
-                School school = new School(reader.GetString("name"), reader.GetString("type"));
+                School school = new School(schoolId, reader.GetString("name"), reader.GetString("type"));
                 reader.Close();
                 connection.close();
                 return school;
@@ -32,7 +34,7 @@ namespace WebAPI.Queries
             connection.close();
            
             Console.WriteLine("\n  school of user " + user.name + "is not found\n");
-            return new School("N/A", "N/A");
+            return new School(schoolId, "N/A", "N/A");
         }
 
         public School registerSchool(School school) {
@@ -137,5 +139,42 @@ namespace WebAPI.Queries
             connection.close();
         }
 
+        public static Teacher[] findTeachers(int idSchool) {
+            Console.WriteLine("finding Teachers");
+            DBConnection connection = new DBConnection();
+            MySqlCommand command;
+            connection.open();
+            string query = "SELECT * FROM TEACHER WHERE ID_SCHOOL=@id";
+            MySqlDataReader reader;
+            command = new MySqlCommand(query, connection.conn);
+            command.Parameters.Add("@id", MySqlDbType.Int32).Value = idSchool;
+
+            reader = command.ExecuteReader();
+
+            List<Teacher> teachers = new List<Teacher>();
+            while (reader.Read()) {
+                teachers.Add(new Teacher(reader.GetInt32("ID_TEACHER"), reader.GetString("FULL_NAME"), reader.GetString("EMAIL"), reader.GetString("PASSWORD"), idSchool));
+            }
+            reader.Close();
+            connection.close();
+            return teachers.ToArray();
+        }
+
+        public static void addTeacher(Teacher teacher) {
+            DBConnection connection = new DBConnection();
+            MySqlCommand command;
+            connection.open();
+            string query = "INSERT INTO TEACHER(FULL_NAME, EMAIL, PASSWORD, ID_SCHOOL) VALUES(@name, @email, @pas, @idSchool)";
+            MySqlDataReader reader;
+            command = new MySqlCommand(query, connection.conn);
+            command.Parameters.Add("@name", MySqlDbType.VarChar, 45).Value = teacher.fullName;
+            command.Parameters.Add("@email", MySqlDbType.VarChar, 45).Value = teacher.email;
+            command.Parameters.Add("@pas", MySqlDbType.VarChar, 45).Value = teacher.password;
+            command.Parameters.Add("@idSchool", MySqlDbType.Int32).Value = teacher.idSchool;
+
+            reader = command.ExecuteReader();
+            reader.Close();
+            connection.close();
+        }
     }
 }

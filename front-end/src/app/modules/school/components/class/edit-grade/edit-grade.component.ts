@@ -11,19 +11,20 @@ import { StudentService } from 'src/app/Services/student.service';
   styleUrls: ['./edit-grade.component.css'],
 })
 export class EditGradeComponent implements OnInit {
-  public static grade: Grade = {
+  grade: Grade = {
     id: 1,
     classNumber: 1,
     grade: 'a',
     schoolName: 'School',
     teacherName: 'Teacher',
   };
-  grade: Grade = EditGradeComponent.grade;
-  displayedColumns: string[] = ['fullName'];
+  displayedColumns: string[] = ['name'];
   students: Student[];
   dataSource: Student[];
   newStudent: string;
   static reload: boolean = false;
+  idGrade: number = 0;
+
   constructor(
     private readonly router: Router,
     private readonly gradeService: GradeService,
@@ -31,52 +32,48 @@ export class EditGradeComponent implements OnInit {
   ) {
     gradeService.getCurrentGrade().subscribe({
       next: (response) => {
-        this.grade = response;
+        this.grade = { ...response };
+        if (this.grade.teacherName === '') {
+          this.grade.teacherName = 'None';
+        }
+        this.idGrade = this.grade.id;
       },
     });
-    console.log(this.grade.teacherName);
-    this.students = [];
-    this.students.push({
-      fullName: 'Ivan Hristov Blagoev',
-      idGrade: 1,
-    });
 
-    this.dataSource = this.students;
+    this.students = [];
+    this.dataSource = [];
+    this.gradeService.getSchoolStudents().subscribe({
+      next: (response) => {
+        this.dataSource = response;
+      },
+      error: (response) => console.log(response),
+    });
 
     this.newStudent = '';
   }
 
-  ngOnInit(): void {
-    this.gradeService.getSchoolStudents().subscribe({
-      next: (response) => {
-        response.forEach((s) =>
-          this.students.push({ fullName: s, idGrade: this.grade.id })
-        );
-      },
-      error: (response) => console.log(response),
-    });
-  }
+  ngOnInit(): void {}
 
   editStudent(student: string) {
-    console.log(student);
     this.router.navigate(['school-admin/school/grade/student']);
   }
 
   addStudent(name: string) {
     let student = {} as Student;
-    student.fullName = name;
-    student.idGrade = this.grade.id;
+    student.name = name;
+    student.idGrade = this.idGrade;
+    console.log(student);
+
     this.studentService.registerStudentProfile(student).subscribe({
       next: (response) => {
         alert('Successfully added student');
+        this.ngOnInit();
       },
       error: (response) => {
         console.log(response);
         alert('Student not added');
       },
     });
-    // console.log(this.dataSource);
-    // this.students.push({ fullName: student, idGrade: this.grade.id });
 
     window.location.reload();
   }

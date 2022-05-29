@@ -11,7 +11,7 @@ export class TeacherService {
   constructor(private readonly http: HttpClient) {}
 
   getTeachers(): Observable<Teacher[]> {
-    return this.http.get<Teacher[]>(`/api/school/grade/teacher`);
+    return this.http.get<Teacher[]>(`/api/school/teachers`);
   }
 
   registerTeacher(teacher: Teacher): Observable<Teacher> {
