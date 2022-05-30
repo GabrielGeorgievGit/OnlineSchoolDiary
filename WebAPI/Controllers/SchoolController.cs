@@ -65,5 +65,10 @@ namespace WebAPI.Controllers
             return Created("~api/school/teacher", teacher);
             //else return BadRequest("Couldn't add to database this teacher");
         }
+
+        [HttpGet("/api/subjects")]
+        public Subject[] getSubjects() {
+            return SchoolQuery.findSubjects();
+        }
     }
 }

@@ -211,5 +211,24 @@ namespace WebAPI.Queries
             reader.Close();
             connection.close();
         }
+
+        public static Subject[] findSubjects() {
+            DBConnection connection = new DBConnection();
+            MySqlCommand command;
+            connection.open();
+            string query = "SELECT ID_SUBJECT, SUBJECT FROM SUBJECT";
+            MySqlDataReader reader;
+            command = new MySqlCommand(query, connection.conn);
+
+            reader = command.ExecuteReader();
+
+            List<Subject> subjects = new List<Subject>();
+            while (reader.Read()) {
+                subjects.Add(new Subject(reader.GetInt32("ID_SUBJECT"), reader.GetString("SUBJECT")));
+            }
+            reader.Close();
+            connection.close();
+            return subjects.ToArray();
+        }
     }
 }

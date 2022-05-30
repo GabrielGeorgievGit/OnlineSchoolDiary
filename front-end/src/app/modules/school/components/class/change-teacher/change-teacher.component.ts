@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Grade } from 'src/app/models/Grade';
 import { Teacher } from 'src/app/models/Teacher';
 import { GradeService } from 'src/app/Services/grade.service';
@@ -17,7 +18,8 @@ export class ChangeTeacherComponent implements OnInit {
   idGrade: number = 0;
   constructor(
     private readonly teacherService: TeacherService,
-    private readonly gradeService: GradeService
+    private readonly gradeService: GradeService,
+    private readonly router: Router
   ) {
     this.grade = {
       id: 1,
@@ -68,6 +70,8 @@ export class ChangeTeacherComponent implements OnInit {
     this.teacherService.editTeacher(teacher).subscribe({
       next: (response) => {
         alert('Class teacher is changed');
+        this.router.navigate([`school-admin`]);
+        this.router.navigate([`school-admin/school/grade`]);
       },
       error: (response) => {
         console.log(response);

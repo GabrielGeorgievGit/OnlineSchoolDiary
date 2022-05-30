@@ -77,6 +77,7 @@ export class TeachersComponent implements OnInit {
       .subscribe({
         next: (response) => {
           alert('Successfully added teacher');
+          this.router.navigate([`school-admin/school/teachers`]);
         },
       });
   }

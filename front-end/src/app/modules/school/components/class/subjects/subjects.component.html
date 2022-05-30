@@ -16,14 +16,14 @@
         <th mat-header-cell *matHeaderCellDef style="text-align: center">
           Subjects
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.subject }}</td>
       </ng-container>
 
       <ng-container matColumnDef="teacher">
         <th mat-header-cell *matHeaderCellDef style="text-align: center">
           Teachers
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.teacherName }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.teacher }}</td>
       </ng-container>
 
       <ng-container matColumnDef="remove">
@@ -31,9 +31,7 @@
           Remove
         </th>
         <td mat-cell *matCellDef="let element; let i = index">
-          <button mat-raised-button (click)="removeSubject(element, i)">
-            Remove
-          </button>
+          <button mat-raised-button (click)="removeSubject(i)">Remove</button>
         </td>
       </ng-container>
 
@@ -41,10 +39,14 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
     <ng-container class="buttonsContainer">
-      <mat-form-field
-        ><mat-label>Subject Name</mat-label>
-        <input matInput #newSubject name="newSubject"
-      /></mat-form-field>
+      <mat-form-field appearance="fill" class="schoolDetails">
+        <mat-label>Subject Name</mat-label>
+        <mat-select [(value)]="subject" #newSubject name="newSubject">
+          <mat-option *ngFor="let s of subjects" [value]="s.id">{{
+            s.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
       <mat-form-field appearance="fill" class="schoolDetails">
         <mat-label>Select Teacher</mat-label>
         <mat-select [(value)]="teacher" #newTeacher name="newTeacher">

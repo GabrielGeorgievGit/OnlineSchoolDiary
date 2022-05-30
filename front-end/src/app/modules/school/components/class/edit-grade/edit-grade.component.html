@@ -2,7 +2,7 @@
   <div class="content">
     <div class="header">
       <h1>Students in grade {{ grade.classNumber + grade.grade }}</h1>
-      <h2>Class Teacher: {{ grade.teacherName }}</h2>
+      <h2>Class Teacher: {{ teacher }}</h2>
       <ng-container class="buttonsContainer">
         <button mat-raised-button (click)="changeTeacher()">
           Change Class Teacher

@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Grade } from 'src/app/models/Grade';
 import { Subject } from 'src/app/models/Subject';
+import { SubjectTeacherPair } from 'src/app/models/SubjectTeacherPair';
+import { SubjectTeacherTable } from 'src/app/models/SubjectTeacherTable';
 import { Teacher } from 'src/app/models/Teacher';
 import { GradeService } from 'src/app/Services/grade.service';
+import { SchoolService } from 'src/app/Services/school.service';
 import { TeacherService } from 'src/app/Services/teacher.service';
 
 @Component({
@@ -14,10 +17,12 @@ import { TeacherService } from 'src/app/Services/teacher.service';
 export class SubjectsComponent implements OnInit {
   displayedColumns: string[] = ['name', 'teacher', 'remove'];
   subjects: Subject[];
-  dataSource: Subject[];
+  dataSource: SubjectTeacherPair[];
   newSubject: string;
   teacher = '';
+  subject = '';
   teachers: Teacher[];
+  subjectTeachers: SubjectTeacherPair[] = [];
   grade: Grade = {
     id: 1,
     classNumber: 1,
@@ -27,6 +32,7 @@ export class SubjectsComponent implements OnInit {
   };
   constructor(
     private readonly router: Router,
+    private readonly schoolService: SchoolService,
     private readonly gradeService: GradeService,
     private readonly teacherService: TeacherService
   ) {
@@ -38,40 +44,81 @@ export class SubjectsComponent implements OnInit {
         }
       },
     });
-    this.subjects = [];
 
+    this.subjects = [];
     this.teachers = [];
+
+    this.dataSource = [];
+
+    this.newSubject = '';
+  }
+
+  isInTable(str: string): boolean {
+    for (let i = 0; i < this.dataSource.length; ++i) {
+      if (this.dataSource[i].subject === str) return true;
+    }
+
+    return false;
+  }
+
+  ngOnInit(): void {
+    this.gradeService.getSubjectTeachers().subscribe({
+      next: (response) => {
+        console.log('response: ', response);
+        this.dataSource = response;
+        response.forEach((st) => this.subjectTeachers.push(st));
+
+        this.schoolService.getSubjects().subscribe({
+          next: (response) => {
+            response.forEach((s) => {
+              if (!this.isInTable(s.name)) this.subjects.push(s);
+            });
+          },
+        });
+      },
+    });
+
     this.teacherService.getTeachers().subscribe({
       next: (response) => {
         response.forEach((t) => this.teachers.push(t));
       },
     });
 
-    this.subjects.push({
-      name: 'Math',
-      teacherName: 'name', //this.teachers[0].fullName,
-    });
-    this.subjects.push({
-      name: 'English',
-      teacherName: 'name', //this.teachers[0].fullName,
-    });
-    this.dataSource = this.subjects;
-
-    this.newSubject = '';
+    //this.dataSource = this.subjectTeachers;
   }
 
-  ngOnInit(): void {}
-
-  removeSubject(subject: Subject, index: number) {
-    console.log(this.subjects[index]);
-
-    //this.router.navigate(['school-admin/school/classes']);
+  removeSubject(index: number) {
+    console.log(this.dataSource[index]);
+    this.gradeService
+      .deleteSubjectTeacher({
+        idGrade: this.dataSource[index].gst.idGrade,
+        idSubject: this.dataSource[index].gst.idSubject,
+        idTeacher: this.dataSource[index].gst.idTeacher,
+      })
+      .subscribe({
+        next: (response) => {
+          alert('Successfully deleted');
+          window.location.reload();
+        },
+      });
   }
 
-  addSubject(subject: string, teacher: string) {
-    console.log(this.dataSource);
-    this.subjects.push({ name: subject, teacherName: teacher });
-    window.location.reload();
+  addSubject(idSubject: number, idTeacher: number) {
+    this.gradeService
+      .addSchoolGradeSubjectTeacher({
+        idGrade: this.grade.id,
+        idSubject: idSubject,
+        idTeacher: idTeacher,
+      })
+      .subscribe({
+        next: (response) => {
+          alert('Successfully added');
+          window.location.reload();
+        },
+        error: (response) => {
+          console.log(response);
+        },
+      });
   }
 
   editClass() {

@@ -16,13 +16,13 @@ namespace WebAPI.Controllers {
 
         [HttpGet("students")]
         public Student[] getSchoolGradeStudents() {
-            return gradeQuery.findStudents(Finder.grade.id);
+            return GradeQuery.findStudents(Finder.grade.id);
         }
 
         [HttpPost("")]
         public IActionResult sendGrade(ClassGrade classGrade) {
             Grade grade;
-            gradeQuery query = new gradeQuery();
+            GradeQuery query = new GradeQuery();
             grade = query.findGrade(classGrade);
             Console.WriteLine(grade.classNumber + grade.grade);
 
@@ -32,16 +32,35 @@ namespace WebAPI.Controllers {
         [HttpPost("student")]
         public IActionResult addStudent(Student student) {
             Console.WriteLine(student.idGrade);
-            gradeQuery.addStudent(student);
+            GradeQuery.addStudent(student);
 
             return Created("~api/school/grade/student", student);
         }
 
         [HttpPut("teacher")]
         public IActionResult editGradeTeacher(Teacher teacher) {
-            gradeQuery.changeTeacher(Finder.grade.id, teacher);
+            GradeQuery.changeTeacher(Finder.grade.id, teacher);
 
             return Created("~api/school/grade/teacher", teacher);
+        }
+        
+        [HttpPost("subject-teacher")]
+        public IActionResult addSubjectTeacher(GradeSubjectTeacher gst) {
+            Console.WriteLine("in add subject teacher");
+            GradeQuery.addSubjectTeacher(gst);
+
+            return Created("~api/school/grade/subject-teacher", gst);
+        }
+
+        [HttpGet("subject-teachers")]
+        public GradeSubjectTeacherPair[] getGradeSubjectTeachers() {
+            return GradeQuery.getSubjectTeachers(Finder.grade.id);
+        }
+
+        [HttpDelete("subject-teachers/delete")]
+        public IActionResult deleteGradeSubjectTeachers(GradeSubjectTeacher gst) {
+            GradeQuery.deleteSubjectTeacher(gst);
+            return Ok();
         }
     }
 }

@@ -11,6 +11,7 @@ import { StudentService } from 'src/app/Services/student.service';
   styleUrls: ['./edit-grade.component.css'],
 })
 export class EditGradeComponent implements OnInit {
+  teacher = 'None';
   grade: Grade = {
     id: 1,
     classNumber: 1,
@@ -30,26 +31,28 @@ export class EditGradeComponent implements OnInit {
     private readonly gradeService: GradeService,
     private readonly studentService: StudentService
   ) {
-    gradeService.getCurrentGrade().subscribe({
+    this.students = [];
+    this.dataSource = [];
+
+    this.newStudent = '';
+
+    this.gradeService.getCurrentGrade().subscribe({
       next: (response) => {
         this.grade = { ...response };
         if (this.grade.teacherName === '') {
           this.grade.teacherName = 'None';
         }
+        this.teacher = this.grade.teacherName;
         this.idGrade = this.grade.id;
       },
     });
 
-    this.students = [];
-    this.dataSource = [];
     this.gradeService.getSchoolStudents().subscribe({
       next: (response) => {
         this.dataSource = response;
       },
       error: (response) => console.log(response),
     });
-
-    this.newStudent = '';
   }
 
   ngOnInit(): void {}
