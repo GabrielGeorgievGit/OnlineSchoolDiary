@@ -23,13 +23,14 @@ DROP TABLE IF EXISTS `grade_subject_teacher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `grade_subject_teacher` (
-  `id_grade_subject_teacher` int unsigned NOT NULL,
+  `id_grade_subject_teacher` int unsigned NOT NULL AUTO_INCREMENT,
   `id_teacher` int unsigned NOT NULL,
   `id_grade_subject` int unsigned NOT NULL,
   PRIMARY KEY (`id_grade_subject_teacher`),
   KEY `idTeacher_idx` (`id_teacher`),
-  KEY `idGradeSubjectGST_idx` (`id_grade_subject`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `idGradeSubjectGST_idx` (`id_grade_subject`),
+  CONSTRAINT `ID_TEACHER` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id_teacher`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +39,7 @@ CREATE TABLE `grade_subject_teacher` (
 
 LOCK TABLES `grade_subject_teacher` WRITE;
 /*!40000 ALTER TABLE `grade_subject_teacher` DISABLE KEYS */;
+INSERT INTO `grade_subject_teacher` VALUES (1,2,1),(12,2,13),(13,3,14),(16,3,17);
 /*!40000 ALTER TABLE `grade_subject_teacher` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-20 18:31:56
+-- Dump completed on 2022-05-30 17:51:07

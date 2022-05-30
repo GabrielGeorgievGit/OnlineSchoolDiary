@@ -32,7 +32,7 @@ CREATE TABLE `teacher` (
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `idScool_idx` (`id_school`),
   CONSTRAINT `idSchoolSub` FOREIGN KEY (`id_school`) REFERENCES `school` (`id_school`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `teacher` (
 
 LOCK TABLES `teacher` WRITE;
 /*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
+INSERT INTO `teacher` VALUES (1,'Ivan Ivanov','vanko2@abv.bg','1234567',1),(2,'Dimitar Ivanov','mitko@abv.bg','mitko123',9),(3,'Николай Златев','nikolai_zl@gmail.com','nikola12',9),(4,'Георги Петров','georgi23@gmail.com','1234567',9),(5,'Кирил Вълчев','vylchev45@gamail.com','123456',9);
 /*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-20 18:31:56
+-- Dump completed on 2022-05-30 17:51:06

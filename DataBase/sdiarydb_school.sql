@@ -27,7 +27,7 @@ CREATE TABLE `school` (
   `name` varchar(45) NOT NULL,
   `type` varchar(3) NOT NULL,
   PRIMARY KEY (`id_school`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `school` (
 
 LOCK TABLES `school` WRITE;
 /*!40000 ALTER TABLE `school` DISABLE KEYS */;
-INSERT INTO `school` VALUES (1,'ivan school','СОУ'),(2,'Петър Берон','ОУ');
+INSERT INTO `school` VALUES (1,'ivan school','СОУ'),(2,'Петър Берон','ОУ'),(9,'Vanko\'s School','СОУ');
 /*!40000 ALTER TABLE `school` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-20 18:31:56
+-- Dump completed on 2022-05-30 17:51:06

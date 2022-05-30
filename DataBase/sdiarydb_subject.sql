@@ -27,7 +27,7 @@ CREATE TABLE `subject` (
   `subject` varchar(45) NOT NULL,
   PRIMARY KEY (`id_subject`),
   UNIQUE KEY `Subject_UNIQUE` (`subject`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +36,7 @@ CREATE TABLE `subject` (
 
 LOCK TABLES `subject` WRITE;
 /*!40000 ALTER TABLE `subject` DISABLE KEYS */;
+INSERT INTO `subject` VALUES (9,'Art'),(4,'Biology'),(2,'Bulgarian language'),(5,'Chemistry'),(3,'English language'),(12,'French'),(7,'Geography'),(6,'History'),(1,'Math'),(8,'Music'),(10,'Physics'),(11,'Spanish');
 /*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-20 18:31:56
+-- Dump completed on 2022-05-30 17:51:06

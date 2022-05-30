@@ -29,7 +29,7 @@ CREATE TABLE `student` (
   PRIMARY KEY (`id_student`),
   KEY `idGrade_idx` (`id_grade`),
   CONSTRAINT `idGrade` FOREIGN KEY (`id_grade`) REFERENCES `grade` (`id_grade`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES (2,'Ivan Nikolov',2),(12,'Ivan Vasilev',6),(13,'Petyr Vasilev',6),(14,'Ivan Petrov',6),(16,'Todor Hristov',2),(17,'Петър Данаилов',27);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-20 18:31:56
+-- Dump completed on 2022-05-30 17:51:06

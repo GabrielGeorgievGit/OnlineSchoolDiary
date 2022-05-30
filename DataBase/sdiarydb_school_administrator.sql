@@ -40,7 +40,7 @@ CREATE TABLE `school_administrator` (
 
 LOCK TABLES `school_administrator` WRITE;
 /*!40000 ALTER TABLE `school_administrator` DISABLE KEYS */;
-INSERT INTO `school_administrator` VALUES (1,'ivan','ivan@abv.bg','1234567',1),(2,'vanko','vanko@abv.bg','1234567',NULL);
+INSERT INTO `school_administrator` VALUES (1,'ivan','ivan@abv.bg','1234567',1),(2,'vanko','vanko@abv.bg','1234567',9);
 /*!40000 ALTER TABLE `school_administrator` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-20 18:31:57
+-- Dump completed on 2022-05-30 17:51:06
